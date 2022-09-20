@@ -5,7 +5,7 @@ export const Nav = styled.a<{ active: boolean }>`
   margin-right: 1rem;
   cursor: pointer;
   font-size: 1.2rem;
-  font-weight: 500;
+  font-weight: 300;
   color: ${({ active }) => (active ? Color.Orange : Color.White)};
 
   &:hover {
@@ -14,6 +14,10 @@ export const Nav = styled.a<{ active: boolean }>`
 `;
 
 export const Container = styled.nav`
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background-color: ${Color.Black};
   display: flex;
   justify-content: space-between;
   padding: 1rem;
