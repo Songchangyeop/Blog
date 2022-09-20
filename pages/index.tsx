@@ -4,6 +4,8 @@ import { InferGetStaticPropsType } from 'next';
 import RecentPosts from 'components/RecentPosts';
 
 const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  console.log(posts);
+
   return (
     <div>
       <RecentPosts posts={posts} />
