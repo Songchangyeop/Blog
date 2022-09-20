@@ -7,7 +7,7 @@ import { Container, Header, Posts, Post, Title, Description } from './styles';
 const RecentPosts = ({ posts }: RecentPostsType) => {
   return (
     <Container>
-      <Header>최근 게시물</Header>
+      <Header>Recent Posts.</Header>
       <Posts>
         {posts.slice(0, 5).map((post) => (
           <Link
