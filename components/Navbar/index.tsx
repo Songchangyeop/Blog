@@ -9,6 +9,9 @@ const Navbar = () => {
 
   return (
     <Container>
+      <Link href="/">
+        <Nav active={router.pathname === '/'}>Home</Nav>
+      </Link>
       <Link href="/blog">
         <Nav active={router.pathname === '/blog'}>Blog</Nav>
       </Link>

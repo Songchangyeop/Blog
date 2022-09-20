@@ -1,22 +1,5 @@
-const withMDX = await import('@next/mdx')({
-  extension: /\.mdx?$/,
-  options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-    // If you use `MDXProvider`, uncomment the following line.
-    // providerImportSource: "@mdx-js/react",
-  },
-});
+const { withContentlayer } = require('next-contentlayer');
 
-module.exports = withMDX({
-  // Append the default value with md extensions
-  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-});
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = withContentlayer({
   reactStrictMode: true,
-  swcMinify: true,
-};
-
-module.exports = nextConfig;
+});
