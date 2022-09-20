@@ -2,11 +2,13 @@ import React from 'react';
 import { allPosts } from 'contentlayer/generated';
 import { InferGetStaticPropsType } from 'next';
 
+import { Container, Header } from './styles';
 import BlogPost from 'components/BlogPost';
 
 const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <div>
+    <Container>
+      <Header>Blog.</Header>
       {posts.map((post) => (
         <BlogPost
           date={post.date}
@@ -16,7 +18,7 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           key={post._id}
         />
       ))}
-    </div>
+    </Container>
   );
 };
 

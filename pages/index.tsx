@@ -32,7 +32,6 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           JavaScript, TypeScript, React, NextJS, Styled-Components
         </Intro>
       </About>
-
       <RecentPosts posts={posts} />
     </Container>
   );

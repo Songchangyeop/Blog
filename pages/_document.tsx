@@ -37,7 +37,9 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <link href="themes/prism-ghcolors.css" rel="stylesheet" />
+        </Head>
         <body>
           <Main />
           <NextScript />

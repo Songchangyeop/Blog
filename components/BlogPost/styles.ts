@@ -4,7 +4,7 @@ import { Color } from 'utils/Color';
 export const Post = styled.section.attrs({ className: 'clickable' })`
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 `;
 
 export const Title = styled.div`

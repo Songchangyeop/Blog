@@ -8,3 +8,16 @@ description: Testing
 
 - 내용 1
 - 내용 2
+
+```javascript
+const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const MDXComponent = useMDXComponent(post.body.code);
+  return (
+    <Container>
+      <PostTitle>{post.title}</PostTitle>
+      <Date>{post.date}</Date>
+      <MDXComponent />
+    </Container>
+  );
+};
+```
