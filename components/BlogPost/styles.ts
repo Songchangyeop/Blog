@@ -11,11 +11,13 @@ export const Title = styled.div`
   font-size: 1.5rem;
   color: ${Color.White};
   font-weight: 700;
+  margin-bottom: 0.625rem;
 `;
 
 export const Description = styled.div`
   font-size: 1rem;
   color: ${Color.LightGray};
+  margin-bottom: 0.3125rem;
 `;
 
 export const Date = styled.div`

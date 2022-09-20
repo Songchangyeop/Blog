@@ -3,5 +3,5 @@ export const Color = {
   Black: '#212121',
   Gray: '#616161',
   LightGray: '#bdbdbd',
-  SkyBlue: '#c1d5e0',
+  Orange: '#ffe082',
 };

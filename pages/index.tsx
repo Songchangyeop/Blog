@@ -3,7 +3,7 @@ import { allPosts } from 'contentlayer/generated';
 import { InferGetStaticPropsType } from 'next';
 import Image from 'utils/Image';
 
-import { Container, Title, About, Intro, Profile } from './styles';
+import { Container, Title, About, Intro, Profile, Bold } from './styles';
 import RecentPosts from 'components/RecentPosts';
 
 import ProfileImage from 'assets/Profile.jpg';
@@ -27,7 +27,7 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           찾기 위해 노력합니다.
           <br />
           <br />
-          <b>Available Skills</b>
+          <Bold>Available Skills</Bold>
           <br />
           JavaScript, TypeScript, React, NextJS, Styled-Components
         </Intro>

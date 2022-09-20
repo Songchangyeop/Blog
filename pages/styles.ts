@@ -19,7 +19,7 @@ export const Title = styled.div`
   align-self: flex-start;
   font-size: 2.5rem;
   font-weight: 700;
-  color: ${Color.SkyBlue};
+  color: ${Color.Orange};
   margin-bottom: 2rem;
 `;
 
@@ -35,4 +35,9 @@ export const Intro = styled.div`
   line-height: 1.5rem;
   padding: 1rem 0;
   color: ${Color.LightGray};
+`;
+
+export const Bold = styled.b`
+  font-size: 1.375rem;
+  color: ${Color.White};
 `;

@@ -9,7 +9,7 @@ export const Container = styled.section`
 
 export const Header = styled.h1`
   font-size: 2rem;
-  color: ${Color.SkyBlue};
+  color: ${Color.Orange};
 `;
 
 export const PostTitle = styled.h1`
