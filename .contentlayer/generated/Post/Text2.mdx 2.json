@@ -1,0 +1,18 @@
+{
+  "title": "송창엽의 테스트 22222",
+  "date": "2022-09-20",
+  "description": "테스트 입니다 ~!",
+  "body": {
+    "raw": "\n## 테스팅 타이틀\n\n- 내용 1\n- 내용 2\n",
+    "code": "var Component=(()=>{var u=Object.create;var s=Object.defineProperty;var h=Object.getOwnPropertyDescriptor;var m=Object.getOwnPropertyNames;var x=Object.getPrototypeOf,j=Object.prototype.hasOwnProperty;var _=(t,n)=>()=>(n||t((n={exports:{}}).exports,n),n.exports),f=(t,n)=>{for(var r in n)s(t,r,{get:n[r],enumerable:!0})},o=(t,n,r,c)=>{if(n&&typeof n==\"object\"||typeof n==\"function\")for(let i of m(n))!j.call(t,i)&&i!==r&&s(t,i,{get:()=>n[i],enumerable:!(c=h(n,i))||c.enumerable});return t};var g=(t,n,r)=>(r=t!=null?u(x(t)):{},o(n||!t||!t.__esModule?s(r,\"default\",{value:t,enumerable:!0}):r,t)),p=t=>o(s({},\"__esModule\",{value:!0}),t);var a=_((F,l)=>{l.exports=_jsx_runtime});var w={};f(w,{default:()=>b,frontmatter:()=>D});var e=g(a()),D={title:\"\\uC1A1\\uCC3D\\uC5FD\\uC758 \\uD14C\\uC2A4\\uD2B8 22222\",date:new Date(1663632e6),description:\"\\uD14C\\uC2A4\\uD2B8 \\uC785\\uB2C8\\uB2E4 ~!\"};function d(t){let n=Object.assign({h2:\"h2\",ul:\"ul\",li:\"li\"},t.components);return(0,e.jsxs)(e.Fragment,{children:[(0,e.jsx)(n.h2,{children:\"\\uD14C\\uC2A4\\uD305 \\uD0C0\\uC774\\uD2C0\"}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsx)(n.li,{children:\"\\uB0B4\\uC6A9 1\"}),`\n`,(0,e.jsx)(n.li,{children:\"\\uB0B4\\uC6A9 2\"}),`\n`]})]})}function M(t={}){let{wrapper:n}=t.components||{};return n?(0,e.jsx)(n,Object.assign({},t,{children:(0,e.jsx)(d,t)})):d(t)}var b=M;return p(w);})();\n;return Component;"
+  },
+  "_id": "Text2.mdx",
+  "_raw": {
+    "sourceFilePath": "Text2.mdx",
+    "sourceFileName": "Text2.mdx",
+    "sourceFileDir": ".",
+    "contentType": "mdx",
+    "flattenedPath": "Text2"
+  },
+  "type": "Post"
+}

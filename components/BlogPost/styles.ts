@@ -24,3 +24,9 @@ export const Date = styled.div`
   font-size: 0.8rem;
   color: ${Color.Gray};
 `;
+
+export const Thumbnail = styled.div`
+  position: relative;
+  width: 100px;
+  padding-top: 20%;
+`;

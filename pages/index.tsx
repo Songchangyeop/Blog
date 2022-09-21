@@ -9,6 +9,7 @@ import RecentPosts from 'components/RecentPosts';
 import ProfileImage from 'assets/Profile.jpg';
 
 const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  console.log(ProfileImage);
   return (
     <Container>
       <Title>Introduce.</Title>
