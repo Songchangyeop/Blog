@@ -27,6 +27,6 @@ export const Date = styled.div`
 
 export const Thumbnail = styled.div`
   position: relative;
-  width: 100px;
+  width: 20%;
   padding-top: 20%;
 `;

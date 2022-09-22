@@ -15,7 +15,7 @@ const BlogPost = ({ date, title, des, thumbnail, slug }: BlogPostTypes) => {
           <Date>{date}</Date>
           {thumbnail && (
             <Thumbnail>
-              <Image src={Thumbnail} alt="thumbnail" />
+              <Image src={thumbnail} alt="thumbnail" />
             </Thumbnail>
           )}
         </Post>
