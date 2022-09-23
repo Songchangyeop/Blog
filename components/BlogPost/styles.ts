@@ -11,7 +11,18 @@ export const TextWrap = styled.div`
   width: 80%;
   display: flex;
   flex-direction: column;
-  padding: 1rem 0;
+  padding: 0.75rem 0;
+`;
+
+export const Tags = styled.ul`
+  display: flex;
+`;
+
+export const Tag = styled.li`
+  font-weight: 700;
+  font-size: 0.75rem;
+  margin-right: 1rem;
+  color: ${Color.LightGray};
 `;
 
 export const Title = styled.div`

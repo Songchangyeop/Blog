@@ -6,8 +6,6 @@ import { Container, Header } from './styles';
 import BlogPost from 'components/BlogPost';
 
 const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log(posts);
-
   return (
     <Container>
       <Header>Blog.</Header>
@@ -17,6 +15,7 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           title={post.title}
           des={post.description}
           thumbnail={post.thumbnail}
+          tags={post.tags}
           slug={post._raw.flattenedPath}
           key={post._id}
         />

@@ -4,4 +4,5 @@ export interface BlogPostTypes {
   des: string;
   thumbnail?: string;
   slug: string;
+  tags: string[];
 }

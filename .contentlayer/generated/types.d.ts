@@ -17,7 +17,7 @@ export type Post = {
   date: string
   description: string
   thumbnail: string
-  tags?: string[] | undefined
+  tags: string[]
   /** MDX file body */
   body: MDX
 
