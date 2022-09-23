@@ -6,10 +6,9 @@ import Image from 'utils/Image';
 import { Container, Title, About, Intro, Profile, Bold } from './styles';
 import RecentPosts from 'components/RecentPosts';
 
-import ProfileImage from 'assets/Profile.jpg';
+import ProfileImage from 'public/Profile.jpg';
 
 const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log(ProfileImage);
   return (
     <Container>
       <Title>Introduce.</Title>

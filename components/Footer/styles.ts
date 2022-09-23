@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { Color } from 'utils/Color';
-import Github from 'assets/Icon_github.svg';
+import Github from 'public/Icon_github.svg';
 
 export const Container = styled.section`
   display: flex;

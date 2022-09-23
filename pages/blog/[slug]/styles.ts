@@ -7,7 +7,12 @@ export const Container = styled.section`
   color: ${Color.White};
 `;
 
-export const Header = styled.h1`
+export const PostTitle = styled.h1`
   font-size: 2rem;
-  color: ${Color.Orange};
+`;
+
+export const Date = styled.div`
+  font-size: 0.8rem;
+  color: ${Color.LightGray};
+  margin-bottom: 2rem;
 `;

@@ -6,6 +6,8 @@ import { Container, Header } from './styles';
 import BlogPost from 'components/BlogPost';
 
 const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  console.log(posts);
+
   return (
     <Container>
       <Header>Blog.</Header>
