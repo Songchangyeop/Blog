@@ -1,0 +1,31 @@
+---
+title: 자바스크립트가 싱글스레드지만 비동기로 동작하는 이유
+date: 2022-03-11
+description: 싱글스레드인 JS가 어떻게 비동기로 동작할까?
+thumbnail: /JS-Async/thumbnail.png
+tags: ['JavaScript']
+---
+
+## 제목
+
+- `내용 1`
+- 내용 2
+
+```javascript
+const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const MDXComponent = useMDXComponent(post.body.code);
+  return (
+    <Container>
+      <PostTitle>{post.title}</PostTitle>
+      <Date>{post.date}</Date>
+      <MDXComponent />
+    </Container>
+  );
+};
+```
+
+![Test](/assets/Profile.jpg)
+
+Test
+
+![waterfall-chart](https://raw.githubusercontent.com/Songchangyeop/Blog/main/assets/Profile.jpg)

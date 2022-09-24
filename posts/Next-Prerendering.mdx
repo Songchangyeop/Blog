@@ -1,0 +1,31 @@
+---
+title: Next.js의 Pre-rendering
+date: 2022-09-11
+description: Next.js의 Pre-rendering에 대해 알아보자
+thumbnail: /Common-Thumbnail/Profile.jpg
+tags: ['Next']
+---
+
+## 제목
+
+- `내용 1`
+- 내용 2
+
+```javascript
+const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const MDXComponent = useMDXComponent(post.body.code);
+  return (
+    <Container>
+      <PostTitle>{post.title}</PostTitle>
+      <Date>{post.date}</Date>
+      <MDXComponent />
+    </Container>
+  );
+};
+```
+
+![Test](/assets/Profile.jpg)
+
+Test
+
+![waterfall-chart](https://raw.githubusercontent.com/Songchangyeop/Blog/main/assets/Profile.jpg)

@@ -9,4 +9,5 @@ export const Container = styled.section`
 
 export const Header = styled.h1`
   font-size: 2.5rem;
+  cursor: default;
 `;

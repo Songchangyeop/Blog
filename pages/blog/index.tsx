@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import { allPosts } from 'contentlayer/generated';
@@ -6,9 +6,10 @@ import { allPosts } from 'contentlayer/generated';
 import { Container, Header } from './styles';
 import TagList from 'components/TagList';
 import BlogPost from 'components/BlogPost';
+import useInfiniteScroll from 'hooks/useInfiniteScroll';
 
 const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const [postList, setPostList] = useState([]);
+  // const [postList, setPostList] = useState([]);
 
   const router = useRouter();
   const { tag } = router.query;
@@ -21,25 +22,24 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
     return posts.filter((post) => post.tags.some((tag_) => tag_ === tag));
   }, [tag]);
 
-  useEffect(() => {
-    setPostList(filteredList);
-  }, [filteredList]);
+  const { currentList, load } = useInfiniteScroll(filteredList);
 
   return (
     <Container>
       <Header>Blog.</Header>
       <TagList />
-      {postList.map((post) => (
-        <BlogPost
-          date={post.date}
-          title={post.title}
-          des={post.description}
-          thumbnail={post.thumbnail}
-          tags={post.tags}
-          slug={post._raw.flattenedPath}
-          key={post._id}
-        />
-      ))}
+      {currentList.length &&
+        currentList.map((post) => (
+          <BlogPost
+            date={post.date}
+            title={post.title}
+            des={post.description}
+            thumbnail={post.thumbnail}
+            tags={post.tags}
+            slug={post._raw.flattenedPath}
+            key={post._id}
+          />
+        ))}
     </Container>
   );
 };

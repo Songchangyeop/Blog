@@ -5,12 +5,13 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 2rem;
+  margin-top: 4.375rem;
   width: 100%;
 `;
 
 export const Header = styled.h1`
   font-size: 2rem;
+  cursor: default;
   color: ${Color.White};
 `;
 

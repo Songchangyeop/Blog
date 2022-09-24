@@ -2,7 +2,7 @@
 title: Next.js Image 알아보기
 date: 2022-09-18
 description: Next.js에서 사용하는 Image의 필수 Props, 옵셔널 Props의 특징 등을 알아보자
-thumbnail: /Thumbnail/Profile.jpg
+thumbnail: /Common-Thumbnail/next.png
 tags: ['Next.js']
 ---
 
@@ -16,10 +16,14 @@ Next.js를 쓰지 않았을 때는 Lazy loading등 성능을 위해 고려해야
 
 Image 컴포넌트에 <span class='highlight'>내장된 최적화</span>는 아래와 같다
 
-- 향상된 성능 - 최신 이미지 형식을 사용하며 각 디바이스에 맞는 올바른 크기의 이미지를 제공한다
-- 시각적 안정성 - 자동으로 CLS (Cumulative Layout Shift) 를 방지해준다
-- 빠른 페이지 로드 - 이미지가 뷰포트에 들어 왔을 때만 로드되기 때문에 초기 페이지 로드 속도가 빠르다
-- 유연한 에셋 - 외부에 저장된 이미지의 경우에도 크기 조정이 가능
+- <span class="highlight">향상된 성능</span> - 최신 이미지 형식을 사용하며 각 디바이스에
+  맞는 올바른 크기의 이미지를 제공한다
+- <span class="highlight">시각적 안정성</span> - 자동으로 CLS (Cumulative Layout
+  Shift) 를 방지해준다
+- <span class="highlight">빠른 페이지 로드</span> - 이미지가 뷰포트에 들어 왔을 때만
+  로드되기 때문에 초기 페이지 로드 속도가 빠르다
+- <span class="highlight">유연한 에셋</span> - 외부에 저장된 이미지의 경우에도 크기
+  조정이 가능
 
 <br />
 
@@ -34,7 +38,7 @@ Image 컴포넌트에 <span class='highlight'>내장된 최적화</span>는 아�
 
 ### width, height
 
-정적으로 가져온 이미지 또는 layout="fill" 인 이미지를 제외하고 width , height속성이 필요하다
+정적으로 가져온 이미지 또는 <span class="highlight">layout="fill"</span> 인 이미지를 제외하고 width , height속성이 필요하다
 
 <br />
 
@@ -42,13 +46,17 @@ Image 컴포넌트에 <span class='highlight'>내장된 최적화</span>는 아�
 
 ### layout
 
-**intrinsic** (default) - 기본 크기를 유지하지만 화면 크기가 이미지의 크기보다 작아질 경우 부모 컨테이너 너비에 맞게 축소된다
+<span class="highlight">**intrinsic** (default)</span> - 기본 크기를 유지하지만 화면
+크기가 이미지의 크기보다 작아질 경우 부모 컨테이너 너비에 맞게 축소된다
 
-**fixed** - 화면 크기와 상관없이 지정된 width, height를 유지한다
+<span class="highlight">**fixed**</span> - 화면 크기와 상관없이 지정된 width, height를
+유지한다
 
-**responsive** - 부모가 display: block 이어야 하며, 부모 컨테이너의 크기에 맞춰진다 (이미지의 비율은 유지)
+<span class="highlight">**responsive**</span> - 부모가 display: block 이어야 하며,
+부모 컨테이너의 크기에 맞춰진다 (이미지의 비율은 유지)
 
-**fill** - 부모가 display: relative 일 경우 부모의 width, height와 동일하게 맞춰진다. 주로 objectFit과 함께 사용
+<span class="highlight">**fill**</span> - 부모가 display: relative 일 경우 부모의
+width, height와 동일하게 맞춰진다. 주로 objectFit과 함께 사용
 
 <br />
 
@@ -92,7 +100,8 @@ const MyImage = (props) => {
 
 true인 경우 이미지가 높은 우선 순위와 preload로 간주된다
 
-**LCP**(Large Contentful Paint) 요소가 될 이미지에 priority속성을 추가해야 한다.
+<span class="highlight">**LCP**(Large Contentful Paint)</span> 요소가 될 이미지에
+priority속성을 추가해야 한다.
 
 즉, 페이지 상단에 스크롤 없이 볼 수 없는 부분에만 사용해야한다.
 

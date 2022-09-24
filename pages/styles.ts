@@ -21,6 +21,7 @@ export const Title = styled.div`
   font-weight: 700;
   color: ${Color.White};
   margin-bottom: 2rem;
+  cursor: default;
 `;
 
 export const About = styled.div`
@@ -34,6 +35,7 @@ export const Intro = styled.div`
   margin-left: 1rem;
   line-height: 1.5rem;
   padding: 1rem 0;
+  cursor: default;
   color: ${Color.LightGray};
 `;
 

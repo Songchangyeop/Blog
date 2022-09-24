@@ -2,7 +2,7 @@
 title: Next.js의 _app과 _document 알아보기
 date: 2022-09-05
 description: Next.js의 _app과 _document를 차근차근 알아보자
-thumbnail: /Thumbnail/Profile.jpg
+thumbnail: /Common-Thumbnail/next.png
 tags: ['Next.js']
 ---
 
@@ -16,17 +16,17 @@ Next.js에는 **\_document**, **\_app** 두개의 기본 페이지가 있다
 
 App 컴포넌트는 앱이 시작할 때 가장 먼저 호출되는 컴포넌트이다.
 
-프로젝트의 글로벌 작업들을 수행하기에 적합한 컴포넌트이다
+프로젝트의 <span class="highlight">글로벌 작업</span>들을 수행하기에 적합한 컴포넌트이다
 
 <br />
 
 ### 예시
 
-- 페이지 변경 시에도 레이아웃과 상태값을 유지
-- componentDidCatch를 통한 에러 핸들링
-- 페이지에 추가 데이터 삽입
-- Global CSS 추가
-- Header, Footer와 같은 공통 레이아웃 추가
+- 페이지 변경 시에도 <span class="highlight">레이아웃</span>과 <span class="highlight">상태값</span>을 유지
+- <span class="highlight">componentDidCatch</span>를 통한 에러 핸들링
+- 페이지에 <span class="highlight">추가 데이터</span> 삽입
+- <span class="highlight">Global CSS</span> 추가
+- Header, Footer와 같은 <span class="highlight">공통 레이아웃</span> 추가
 
 <br />
 
@@ -56,7 +56,7 @@ Component는 현재 페이지를 의미하며 페이지가 변경되면 Componen
 
 **pageProps**
 
-pageProps는 getInitialProps, getStaticProps, getServerProps중 하나를 통해 가져온 초기 속성값을 의미한다
+pageProps는 <span class="highlight">getInitialProps</span>, <span class="highlight">getStaticProps</span>, <span class="highlight">getServerProps</span>중 하나를 통해 가져온 초기 속성값을 의미한다
 
 <br />
 
@@ -95,7 +95,7 @@ const App = ({ Component, pageProps }) => {
 
 모든 페이지에서 공통적으로 사용되는 html, meta, body 태그 안에 들어갈 내용을 커스텀 할 때 사용한다
 
-- Document는 서버에서만 렌더링 된다
+- Document는 <span class="highlight">서버에서만 렌더링</span> 된다
 - onClick과 같은 이벤트나 스타일, application 로직 등은 넣으면 안 된다
 - title과 같이 각 페이지별로 변경이 될 가능성이 있는 것들은 각 페이지에 넣어야 한다
 
