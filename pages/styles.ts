@@ -37,7 +37,9 @@ export const Intro = styled.div`
   color: ${Color.LightGray};
 `;
 
-export const Bold = styled.b`
-  font-size: 1.375rem;
-  color: ${Color.White};
+export const ResumeLink = styled.a.attrs({ className: 'clickable' })`
+  font-size: 1.25rem;
+  font-weight: 300;
+  text-decoration: underline;
+  color: ${Color.Blue};
 `;

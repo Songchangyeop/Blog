@@ -3,7 +3,7 @@ import { allPosts } from 'contentlayer/generated';
 import { InferGetStaticPropsType } from 'next';
 import Image from 'utils/Image';
 
-import { Container, Title, About, Intro, Profile, Bold } from './styles';
+import { Container, Title, About, Intro, Profile, ResumeLink } from './styles';
 import RecentPosts from 'components/RecentPosts';
 
 import ProfileImage from 'public/Profile.jpg';
@@ -27,9 +27,17 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           찾기 위해 노력합니다.
           <br />
           <br />
-          <Bold>Available Skills</Bold>
+          song.dev
           <br />
-          JavaScript, TypeScript, React, NextJS, Styled-Components
+          Front-end Engineer / Seoul, Korea
+          <br />
+          <br />
+          <ResumeLink
+            href="https://holly-monarch-69a.notion.site/e2c53fb57c8c4730a5cd10779137d0c6"
+            target="_blank"
+          >
+            Resume (Notion)
+          </ResumeLink>
         </Intro>
       </About>
       <RecentPosts posts={posts} />
