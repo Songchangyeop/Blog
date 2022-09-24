@@ -1,23 +1,45 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'utils/Image';
 
 import { RecentPostsType } from './types';
-import { Container, Header, Posts, Post, Title, Description } from './styles';
+import {
+  Container,
+  Header,
+  Posts,
+  Post,
+  Thumbnail,
+  Wrapper,
+  Title,
+  Description,
+  Tags,
+  Tag,
+} from './styles';
 
 const RecentPosts = ({ posts }: RecentPostsType) => {
   return (
     <Container>
       <Header>Recent Posts.</Header>
       <Posts>
-        {posts.slice(0, 5).map((post) => (
+        {posts.slice(0, 4).map((post) => (
           <Link
             key={post._id}
             href={`/blog/${post._raw.flattenedPath}`}
             passHref
           >
             <Post>
-              <Title>{post.title}</Title>
-              <Description>{post.description}</Description>
+              <Thumbnail>
+                <Image src={post.thumbnail} />
+              </Thumbnail>
+              <Wrapper>
+                <Tags>
+                  {post.tags.map((tag, index) => (
+                    <Tag key={index}>{tag}</Tag>
+                  ))}
+                </Tags>
+                <Title>{post.title}</Title>
+                <Description>{post.description}</Description>
+              </Wrapper>
             </Post>
           </Link>
         ))}
