@@ -19,9 +19,7 @@ export const Container = styled.nav`
   z-index: 99;
   background-color: ${Color.Black};
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 1rem;
   margin-bottom: 2rem;
 `;
-
-export const NavList = styled.div``;
