@@ -6,10 +6,10 @@ export const Nav = styled.a<{ active: boolean }>`
   cursor: pointer;
   font-size: 1.2rem;
   font-weight: 300;
-  color: ${({ active }) => (active ? Color.Orange : Color.White)};
+  color: ${({ active }) => (active ? Color.Blue : Color.White)};
 
   &:hover {
-    color: ${Color.Orange};
+    color: ${Color.Blue};
   }
 `;
 

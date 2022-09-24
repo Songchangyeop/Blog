@@ -22,7 +22,7 @@ export const Tag = styled.li`
   font-weight: 700;
   font-size: 0.75rem;
   margin-right: 1rem;
-  color: ${Color.LightGray};
+  color: ${Color.Blue};
 `;
 
 export const Title = styled.div`

@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const Header = styled.h1`
   font-size: 2rem;
-  color: ${Color.Orange};
+  color: ${Color.White};
 `;
 
 export const Posts = styled.div`

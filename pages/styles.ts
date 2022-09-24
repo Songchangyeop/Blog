@@ -19,7 +19,7 @@ export const Title = styled.div`
   align-self: flex-start;
   font-size: 2.5rem;
   font-weight: 700;
-  color: ${Color.Orange};
+  color: ${Color.White};
   margin-bottom: 2rem;
 `;
 

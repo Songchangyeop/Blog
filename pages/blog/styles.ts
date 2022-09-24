@@ -8,6 +8,5 @@ export const Container = styled.section`
 `;
 
 export const Header = styled.h1`
-  font-size: 2rem;
-  color: ${Color.Orange};
+  font-size: 2.5rem;
 `;

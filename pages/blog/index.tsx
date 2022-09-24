@@ -1,15 +1,35 @@
-import React from 'react';
-import { allPosts } from 'contentlayer/generated';
+import React, { useEffect, useMemo, useState } from 'react';
 import { InferGetStaticPropsType } from 'next';
+import { useRouter } from 'next/router';
+import { allPosts } from 'contentlayer/generated';
 
 import { Container, Header } from './styles';
+import TagList from 'components/TagList';
 import BlogPost from 'components/BlogPost';
 
 const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const [postList, setPostList] = useState([]);
+
+  const router = useRouter();
+  const { tag } = router.query;
+
+  const filteredList = useMemo(() => {
+    if (tag === 'All' || tag === undefined) {
+      return posts;
+    }
+
+    return posts.filter((post) => post.tags.some((tag_) => tag_ === tag));
+  }, [tag]);
+
+  useEffect(() => {
+    setPostList(filteredList);
+  }, [filteredList]);
+
   return (
     <Container>
       <Header>Blog.</Header>
-      {posts.map((post) => (
+      <TagList />
+      {postList.map((post) => (
         <BlogPost
           date={post.date}
           title={post.title}

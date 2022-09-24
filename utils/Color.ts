@@ -1,7 +1,7 @@
 export const Color = {
   White: '#fafafa',
-  Black: '#212121',
+  Black: '#151c21',
   Gray: '#616161',
   LightGray: '#bdbdbd',
-  Orange: '#ffe082',
+  Blue: '#29b6f6',
 };
