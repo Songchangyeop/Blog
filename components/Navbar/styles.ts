@@ -19,7 +19,7 @@ export const Container = styled.nav`
   z-index: 99;
   background-color: ${Color.Black};
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   padding: 1rem;
   margin-bottom: 2rem;
 `;
