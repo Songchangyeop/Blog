@@ -15,7 +15,7 @@ const useInfiniteScroll = (list): PropTypes => {
   const [currentList, setCurrentList] = useState([]);
 
   useEffect(() => {
-    const sliceList = list?.slice(0, 2);
+    const sliceList = list?.slice(0, 4);
     setCurrentList(sliceList);
   }, [list]);
 

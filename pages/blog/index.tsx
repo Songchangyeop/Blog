@@ -1,7 +1,8 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import { allPosts } from 'contentlayer/generated';
+import { useInView } from 'react-intersection-observer';
 
 import { Container, Header } from './styles';
 import TagList from 'components/TagList';
@@ -9,10 +10,10 @@ import BlogPost from 'components/BlogPost';
 import useInfiniteScroll from 'hooks/useInfiniteScroll';
 
 const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  // const [postList, setPostList] = useState([]);
-
   const router = useRouter();
   const { tag } = router.query;
+
+  const [ref, inView] = useInView();
 
   const filteredList = useMemo(() => {
     if (tag === 'All' || tag === undefined) {
@@ -23,6 +24,12 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   }, [tag]);
 
   const { currentList, load } = useInfiniteScroll(filteredList);
+
+  useEffect(() => {
+    if (inView) {
+      load();
+    }
+  }, [inView]);
 
   return (
     <Container>
@@ -40,6 +47,7 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
             key={post._id}
           />
         ))}
+      <div ref={ref} />
     </Container>
   );
 };
