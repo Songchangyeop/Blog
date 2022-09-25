@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BreakPoint } from 'utils/BreakPoint';
 import { Color } from 'utils/Color';
 
 export const Container = styled.div`
@@ -19,6 +20,10 @@ export const Posts = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+
+  ${BreakPoint.MobileL} {
+    flex-direction: column;
+  }
 `;
 
 export const Post = styled.a.attrs({ className: 'clickable' })`
@@ -32,6 +37,11 @@ export const Post = styled.a.attrs({ className: 'clickable' })`
 
   &:nth-child(odd) {
     margin-right: 0.625rem;
+  }
+
+  ${BreakPoint.MobileL} {
+    width: 100%;
+    margin-right: 0;
   }
 `;
 
