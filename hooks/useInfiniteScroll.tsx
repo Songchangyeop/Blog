@@ -1,21 +1,21 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 interface PropTypes {
-  list?: {
+  list: {
     date: string;
     title: string;
     des: string;
     thumbnail: string;
     tags: string[];
     slug: string;
-  }[];
+  };
 }
 
-const useInfiniteScroll = (list: PropTypes) => {
+const useInfiniteScroll = (list: PropTypes[]) => {
   const [currentList, setCurrentList] = useState([]);
 
   useEffect(() => {
-    const sliceList = list?.slice(0, 4);
+    const sliceList = list.slice(0, 4);
     setCurrentList(sliceList);
   }, [list]);
 
