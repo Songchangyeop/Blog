@@ -11,7 +11,7 @@ interface PropTypes {
   }[];
 }
 
-const useInfiniteScroll = (list): PropTypes => {
+const useInfiniteScroll = (list: PropTypes) => {
   const [currentList, setCurrentList] = useState([]);
 
   useEffect(() => {
