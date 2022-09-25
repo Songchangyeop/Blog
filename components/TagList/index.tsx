@@ -12,12 +12,13 @@ const TagList = () => {
 
   useEffect(() => {
     if (tagQuery === undefined) {
-      setCurrentTag('All');
+      return setCurrentTag('All');
     }
-  }, []);
+
+    setCurrentTag(tagQuery);
+  }, [tagQuery]);
 
   const onTagClick = (tag: string) => {
-    setCurrentTag(tag);
     router.push(`/blog?tag=${tag}`);
   };
 
