@@ -8,7 +8,7 @@ export const Container = styled.section`
   flex-direction: column;
   align-items: center;
 
-  ${BreakPoint.MobileL} {
+  ${BreakPoint.Tablet} {
     padding: 1rem;
   }
 `;
@@ -26,7 +26,7 @@ export const About = styled.div`
   display: flex;
   color: ${Color.White};
 
-  ${BreakPoint.MobileL} {
+  ${BreakPoint.Tablet} {
     align-items: center;
     flex-direction: column;
   }
@@ -34,13 +34,14 @@ export const About = styled.div`
 
 export const Profile = styled.div`
   position: relative;
-  width: 40%;
-  padding-top: 40%;
+  width: 20rem;
+  height: 20rem;
   border-radius: 2rem;
   overflow: hidden;
 
   ${BreakPoint.MobileL} {
     width: 80%;
+    height: auto;
     padding-top: 80%;
   }
 `;
@@ -54,7 +55,7 @@ export const Intro = styled.div`
   cursor: default;
   color: ${Color.LightGray};
 
-  ${BreakPoint.MobileL} {
+  ${BreakPoint.Tablet} {
     margin-top: 1rem;
     width: 90%;
   }
