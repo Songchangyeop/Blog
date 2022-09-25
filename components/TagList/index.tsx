@@ -5,7 +5,7 @@ import { tags } from 'data/tags';
 import { useRouter } from 'next/router';
 
 const TagList = () => {
-  const [currentTag, setCurrentTag] = useState();
+  const [currentTag, setCurrentTag] = useState<string>();
 
   const router = useRouter();
   const { tag: tagQuery } = router.query;
