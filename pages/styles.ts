@@ -1,18 +1,16 @@
 import styled from 'styled-components';
+
+import { BreakPoint } from 'utils/BreakPoint';
 import { Color } from 'utils/Color';
 
 export const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
 
-export const Profile = styled.div`
-  position: relative;
-  width: 40%;
-  padding-top: 40%;
-  border-radius: 2rem;
-  overflow: hidden;
+  ${BreakPoint.MobileL} {
+    padding: 1rem;
+  }
 `;
 
 export const Title = styled.div`
@@ -27,6 +25,24 @@ export const Title = styled.div`
 export const About = styled.div`
   display: flex;
   color: ${Color.White};
+
+  ${BreakPoint.MobileL} {
+    align-items: center;
+    flex-direction: column;
+  }
+`;
+
+export const Profile = styled.div`
+  position: relative;
+  width: 40%;
+  padding-top: 40%;
+  border-radius: 2rem;
+  overflow: hidden;
+
+  ${BreakPoint.MobileL} {
+    width: 80%;
+    padding-top: 80%;
+  }
 `;
 
 export const Intro = styled.div`
@@ -37,6 +53,11 @@ export const Intro = styled.div`
   padding: 1rem 0;
   cursor: default;
   color: ${Color.LightGray};
+
+  ${BreakPoint.MobileL} {
+    margin-top: 1rem;
+    width: 90%;
+  }
 `;
 
 export const ResumeLink = styled.a.attrs({ className: 'clickable' })`
