@@ -9,4 +9,8 @@ interface postType {
   slug: string;
   thumbnail: string;
   tags: string[];
+  _id: string;
+  _raw: {
+    flattenedPath: string;
+  };
 }
