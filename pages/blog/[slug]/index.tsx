@@ -1,12 +1,12 @@
 import React from 'react';
 import { allPosts } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import { InferGetStaticPropsType } from 'next';
 import { NextSeo } from 'next-seo';
 
 import { Container, PostTitle, Date } from './styles';
+import { PostType } from './types';
 
-const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Post = ({ post }: PostType) => {
   const MDXComponent = useMDXComponent(post.body.code);
 
   return (
