@@ -1,3 +1,3 @@
 export interface LayoutType {
-  children: ReactNode;
+  children: React.ReactNode;
 }
