@@ -12,7 +12,7 @@ interface PropTypes {
 }
 
 const useInfiniteScroll = (list: PropTypes[]) => {
-  const [currentList, setCurrentList] = useState([]);
+  const [currentList, setCurrentList] = useState<PropTypes[]>([]);
 
   useEffect(() => {
     const sliceList = list.slice(0, 4);
