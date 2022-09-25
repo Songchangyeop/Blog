@@ -5,7 +5,7 @@ export interface RecentPostsType {
 interface postType {
   date: string;
   title: string;
-  des: string;
+  description: string;
   slug: string;
   thumbnail: string;
   tags: string[];
