@@ -2,6 +2,7 @@ import React from 'react';
 import { allPosts } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { InferGetStaticPropsType } from 'next';
+import { NextSeo } from 'next-seo';
 
 import { Container, PostTitle, Date } from './styles';
 
@@ -10,6 +11,7 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   return (
     <Container>
+      <NextSeo title={post.title} description={post.description} />
       <PostTitle>{post.title}</PostTitle>
       <Date>{post.date}</Date>
       <MDXComponent />

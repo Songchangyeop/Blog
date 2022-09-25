@@ -3,6 +3,7 @@ import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import { allPosts } from 'contentlayer/generated';
 import { useInView } from 'react-intersection-observer';
+import { NextSeo } from 'next-seo';
 
 import { Container, Header } from './styles';
 import TagList from 'components/TagList';
@@ -34,6 +35,7 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <Container>
       <Header>Blog.</Header>
+      <NextSeo title="Dev.Song | Blog" />
       <TagList />
       {currentList.length &&
         currentList.map((post) => (

@@ -1,6 +1,7 @@
 import React from 'react';
 import { allPosts } from 'contentlayer/generated';
 import { InferGetStaticPropsType } from 'next';
+import { NextSeo } from 'next-seo';
 import Image from 'utils/Image';
 
 import { Container, Title, About, Intro, Profile, ResumeLink } from './styles';
@@ -11,6 +12,10 @@ import ProfileImage from 'public/Profile.jpg';
 const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <Container>
+      <NextSeo
+        title="Dev.Song | FrontEnd Engineer"
+        description="Records of Junior FrontEnd Engineer Dev.Song"
+      />
       <Title>Introduce.</Title>
       <About>
         <Profile>
