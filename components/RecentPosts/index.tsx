@@ -29,7 +29,7 @@ const RecentPosts = ({ posts }: RecentPostsType) => {
           >
             <Post>
               <Thumbnail>
-                <Image src={post.thumbnail} />
+                <Image src={post.thumbnail} alt="Thumbnail" />
               </Thumbnail>
               <Wrapper>
                 <Tags>
