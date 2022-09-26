@@ -10,7 +10,18 @@ import TagList from 'components/TagList';
 import BlogPost from 'components/BlogPost';
 import useInfiniteScroll from 'hooks/useInfiniteScroll';
 
-const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+interface PropType {
+  posts: {
+    date: string;
+    title: string;
+    des: string;
+    thumbnail: string;
+    tags: string[];
+    slug: string;
+  }[];
+}
+
+const Blog = ({ posts }: PropType) => {
   const router = useRouter();
   const { tag } = router.query;
 

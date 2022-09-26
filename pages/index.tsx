@@ -10,8 +10,6 @@ import RecentPosts from 'components/RecentPosts';
 import ProfileImage from 'public/Profile.jpg';
 
 const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log(posts);
-
   return (
     <Container>
       <NextSeo
