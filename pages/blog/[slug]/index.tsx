@@ -3,7 +3,7 @@ import { useMDXComponent } from 'next-contentlayer/hooks';
 import { NextSeo } from 'next-seo';
 
 import { Container, PostTitle, Date } from 'styles/pages/blog/[slug]/styles';
-import { PostType } from 'types/[slug]/types';
+import { PostType } from 'Types/[slug]/types';
 
 const Post = ({ post }: PostType) => {
   const MDXComponent = useMDXComponent(post.body.code);
