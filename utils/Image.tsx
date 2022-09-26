@@ -4,7 +4,7 @@ import NextImage from 'next/image';
 interface ImageTypes {
   src: string;
   alt: string;
-  layout?: string;
+  layout?: 'fixed' | 'fill' | 'intrinsic' | 'responsive' | undefined;
 }
 
 /**
