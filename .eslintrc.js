@@ -32,5 +32,5 @@ module.exports = {
   globals: {
     React: 'writable',
   },
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: ['.eslintrc.js', 'next-sitemap.config.js'],
 };
