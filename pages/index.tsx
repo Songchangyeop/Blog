@@ -5,10 +5,15 @@ import Image from 'utils/Image';
 
 import { Container, Title, About, Intro, Profile, ResumeLink } from './styles';
 import RecentPosts from 'components/RecentPosts';
+import { PostTypes } from 'Types/postTypes';
 
 import ProfileImage from 'public/Profile.jpg';
 
-const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+interface PropTypes {
+  posts: PostTypes[];
+}
+
+const Home = ({ posts }: PropTypes) => {
   return (
     <Container>
       <NextSeo
