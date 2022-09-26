@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 
 interface PropTypes {
-  list: ListType[];
+  posts: PostType[];
 }
 
-interface ListType {
+interface PostType {
   date: string;
   title: string;
   des: string;
@@ -13,16 +13,16 @@ interface ListType {
   slug: string;
 }
 
-const useInfiniteScroll = ({ list }: PropTypes) => {
-  const [currentList, setCurrentList] = useState<ListType[]>([]);
+const useInfiniteScroll = ({ posts }: PropTypes) => {
+  const [currentList, setCurrentList] = useState<PostType[]>([]);
 
   useEffect(() => {
-    const sliceList = list.slice(0, 4);
+    const sliceList = posts.slice(0, 4);
     setCurrentList(sliceList);
-  }, [list]);
+  }, [posts]);
 
   const load = useCallback(() => {
-    const sliceList = list?.slice(currentList.length, currentList.length + 2);
+    const sliceList = posts?.slice(currentList.length, currentList.length + 2);
 
     setCurrentList((currentList) => currentList.concat(sliceList));
   }, [currentList]);
