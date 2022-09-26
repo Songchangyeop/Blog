@@ -18,7 +18,7 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Title>Introduce.</Title>
       <About>
         <Profile>
-          <Image src={ProfileImage} alt="profile" />
+          <Image src={ProfileImage.src} alt="profile" />
         </Profile>
         <Intro>
           소통과 공유를 바탕으로 기본을 중요시하는 프론트엔드 개발자가 되고자
