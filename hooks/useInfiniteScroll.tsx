@@ -14,7 +14,7 @@ interface ListType {
 }
 
 const useInfiniteScroll = ({ list }: PropTypes) => {
-  const [currentList, setCurrentList] = useState<PropTypes[]>([]);
+  const [currentList, setCurrentList] = useState<ListType[]>([]);
 
   useEffect(() => {
     const sliceList = list.slice(0, 4);
