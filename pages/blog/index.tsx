@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo } from 'react';
-import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import { allPosts } from 'contentlayer/generated';
 import { useInView } from 'react-intersection-observer';
@@ -11,14 +10,16 @@ import BlogPost from 'components/BlogPost';
 import useInfiniteScroll from 'hooks/useInfiniteScroll';
 
 interface PropType {
-  posts: {
-    date: string;
-    title: string;
-    des: string;
-    thumbnail: string;
-    tags: string[];
-    slug: string;
-  }[];
+  posts: PostType[];
+}
+
+interface PostType {
+  date: string;
+  title: string;
+  des: string;
+  thumbnail: string;
+  tags: string[];
+  slug: string;
 }
 
 const Blog = ({ posts }: PropType) => {

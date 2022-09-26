@@ -1,17 +1,19 @@
 import { useCallback, useEffect, useState } from 'react';
 
 interface PropTypes {
-  list: {
-    date: string;
-    title: string;
-    des: string;
-    thumbnail: string;
-    tags: string[];
-    slug: string;
-  };
+  list: ListType[];
 }
 
-const useInfiniteScroll = (list: PropTypes[]) => {
+interface ListType {
+  date: string;
+  title: string;
+  des: string;
+  thumbnail: string;
+  tags: string[];
+  slug: string;
+}
+
+const useInfiniteScroll = ({ list }: PropTypes) => {
   const [currentList, setCurrentList] = useState<PropTypes[]>([]);
 
   useEffect(() => {
