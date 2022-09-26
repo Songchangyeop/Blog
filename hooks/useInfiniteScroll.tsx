@@ -1,10 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
 interface PropTypes {
-  posts: PostType[];
-}
-
-interface PostType {
   date: string;
   title: string;
   des: string;
@@ -13,7 +9,7 @@ interface PostType {
   slug: string;
 }
 
-const useInfiniteScroll = ({ posts }: PropTypes) => {
+const useInfiniteScroll = (posts: PropTypes[]) => {
   const [currentList, setCurrentList] = useState<PostType[]>([]);
 
   useEffect(() => {
