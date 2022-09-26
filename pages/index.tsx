@@ -1,5 +1,4 @@
 import { allPosts } from 'contentlayer/generated';
-import { InferGetStaticPropsType } from 'next';
 import { NextSeo } from 'next-seo';
 import Image from 'utils/Image';
 

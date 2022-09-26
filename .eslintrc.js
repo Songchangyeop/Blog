@@ -32,5 +32,5 @@ module.exports = {
   globals: {
     React: 'writable',
   },
-  root: true,
+  ignorePatterns: ['.eslintrc.js'],
 };
