@@ -1,4 +1,3 @@
-import React from 'react';
 import { allPosts } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { NextSeo } from 'next-seo';
@@ -19,14 +18,15 @@ const Post = ({ post }: PostType) => {
   );
 };
 
-export const getStaticPaths = async () => {
+export const getStaticPaths = () => {
   return {
     paths: allPosts.map((p) => ({ params: { slug: p._raw.flattenedPath } })),
     fallback: false,
   };
 };
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps = ({ params }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   const post = allPosts.find((p) => p._raw.flattenedPath === params.slug);
   return {
     props: {

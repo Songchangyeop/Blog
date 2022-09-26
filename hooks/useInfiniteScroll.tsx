@@ -1,16 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
+import { PostTypes } from 'Types/postTypes';
 
-interface PropTypes {
-  date: string;
-  title: string;
-  des: string;
-  thumbnail: string;
-  tags: string[];
-  slug: string;
-}
-
-const useInfiniteScroll = (posts: PropTypes[]) => {
-  const [currentList, setCurrentList] = useState<PostType[]>([]);
+const useInfiniteScroll = (posts: PostTypes[]) => {
+  const [currentList, setCurrentList] = useState<PostTypes[]>([]);
 
   useEffect(() => {
     const sliceList = posts.slice(0, 4);
@@ -21,7 +13,7 @@ const useInfiniteScroll = (posts: PropTypes[]) => {
     const sliceList = posts?.slice(currentList.length, currentList.length + 2);
 
     setCurrentList((currentList) => currentList.concat(sliceList));
-  }, [currentList]);
+  }, [currentList]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return {
     currentList,

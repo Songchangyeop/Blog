@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { allPosts } from 'contentlayer/generated';
 import { useInView } from 'react-intersection-observer';
@@ -8,21 +8,15 @@ import { Container, Header } from './styles';
 import TagList from 'components/TagList';
 import BlogPost from 'components/BlogPost';
 import useInfiniteScroll from 'hooks/useInfiniteScroll';
+import { PostTypes } from 'Types/postTypes';
 
 interface PropType {
-  posts: PostType[];
+  posts: PostTypes[];
 }
 
-interface PostType {
-  date: string;
-  title: string;
-  des: string;
-  thumbnail: string;
-  tags: string[];
-  slug: string;
-}
+function Blog({ posts }: PropType) {
+  console.log(posts);
 
-const Blog = ({ posts }: PropType) => {
   const router = useRouter();
   const { tag } = router.query;
 
@@ -34,7 +28,7 @@ const Blog = ({ posts }: PropType) => {
     }
 
     return posts.filter((post) => post.tags.some((tag_) => tag_ === tag));
-  }, [tag]);
+  }, [tag]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const { currentList, load } = useInfiniteScroll(filteredList);
 
@@ -42,7 +36,7 @@ const Blog = ({ posts }: PropType) => {
     if (inView) {
       load();
     }
-  }, [inView]);
+  }, [inView]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Container>
@@ -64,9 +58,9 @@ const Blog = ({ posts }: PropType) => {
       <div ref={ref} />
     </Container>
   );
-};
+}
 
-export const getStaticProps = async () => {
+export const getStaticProps = () => {
   const posts = allPosts.sort(
     (a, b) => Number(new Date(b.date)) - Number(new Date(a.date)),
   );

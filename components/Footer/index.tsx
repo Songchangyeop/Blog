@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Container, LogoLink, Logo } from './styles';
 
 const Footer = () => {

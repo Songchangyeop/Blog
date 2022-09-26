@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Tags, Tag } from './styles';
 import { tags } from 'data/tags';

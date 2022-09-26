@@ -1,4 +1,3 @@
-import React from 'react';
 import { allPosts } from 'contentlayer/generated';
 import { InferGetStaticPropsType } from 'next';
 import { NextSeo } from 'next-seo';
@@ -50,7 +49,7 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps = () => {
   const posts = allPosts.sort(
     (a, b) => Number(new Date(b.date)) - Number(new Date(a.date)),
   );
