@@ -15,6 +15,7 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
+    "noImplicitAny": false,
     "paths": {
       "contentlayer/generated": ["./.contentlayer/generated"]
     }
@@ -24,7 +25,8 @@
     "**/*.ts",
     "**/*.tsx",
     "mdx.d.ts",
-    ".contentlayer/generated"
+    ".contentlayer/generated",
+    "next-sitemap.js"
   ],
   "exclude": ["node_modules"]
 }
