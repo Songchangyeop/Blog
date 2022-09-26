@@ -2,7 +2,14 @@ import { allPosts } from 'contentlayer/generated';
 import { NextSeo } from 'next-seo';
 import Image from 'utils/Image';
 
-import { Container, Title, About, Intro, Profile, ResumeLink } from './styles';
+import {
+  Container,
+  Title,
+  About,
+  Intro,
+  Profile,
+  ResumeLink,
+} from 'styles/pages/styles';
 import RecentPosts from 'components/RecentPosts';
 import { PostTypes } from 'Types/postTypes';
 

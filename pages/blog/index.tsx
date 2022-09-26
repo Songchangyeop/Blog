@@ -4,7 +4,7 @@ import { allPosts } from 'contentlayer/generated';
 import { useInView } from 'react-intersection-observer';
 import { NextSeo } from 'next-seo';
 
-import { Container, Header } from './styles';
+import { Container, Header } from 'styles/pages/blog/styles';
 import TagList from 'components/TagList';
 import BlogPost from 'components/BlogPost';
 import useInfiniteScroll from 'hooks/useInfiniteScroll';
