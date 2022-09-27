@@ -2,7 +2,7 @@
 
 <br>
 
-### [Dev.song](https://next-blog-songchangyeop.vercel.app/)
+### [Dev.song](https://blog-songchangyeop.vercel.app/)
 
 <br>
 
