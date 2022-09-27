@@ -11,6 +11,8 @@ import jsGeolocationMdx from './JS-Geolocation.mdx.json'
 import jsHoistingMdx from './JS-Hoisting.mdx.json'
 import jsJsonMdx from './JS-Json.mdx.json'
 import jsJsonServerMdx from './JS-JsonServer.mdx.json'
+import jsOopMdx from './JS-OOP.mdx.json'
+import jsObjectMdx from './JS-Object.mdx.json'
 import jsPrototypeMdx from './JS-Prototype.mdx.json'
 import jsCriticalRenderingPathMdx from './Js-CriticalRenderingPath.mdx.json'
 import nextAppDocMdx from './Next-AppDoc.mdx.json'
@@ -27,6 +29,5 @@ import reduxToolkit_sagaMdx from './Redux-Toolkit_Saga.mdx.json'
 import reduxWhatMdx from './Redux-What.mdx.json'
 import tsBasicMdx from './TS-Basic.mdx.json'
 import tsTodoMdx from './TS-Todo.mdx.json'
-import jsObjectMdx from './JS-Object.mdx.json'
 
-export const allPosts = [couchPlanningMdx, couchRetrospectMdx, feResponseCodeMdx, jsArray_apisMdx, jsArray_basicMdx, jsAsyncMdx, jsCorsMdx, jsGeolocationMdx, jsHoistingMdx, jsJsonMdx, jsJsonServerMdx, jsPrototypeMdx, jsCriticalRenderingPathMdx, nextAppDocMdx, nextImageMdx, nextPrerenderingMdx, reactAntd_paginationMdx, reactAxiosInstanceMdx, reactKakaoMapMdx, reactSkeletonMdx, reduxBasicMdx, reduxHooksMdx, reduxToolkitMdx, reduxToolkit_sagaMdx, reduxWhatMdx, tsBasicMdx, tsTodoMdx, jsObjectMdx]
+export const allPosts = [couchPlanningMdx, couchRetrospectMdx, feResponseCodeMdx, jsArray_apisMdx, jsArray_basicMdx, jsAsyncMdx, jsCorsMdx, jsGeolocationMdx, jsHoistingMdx, jsJsonMdx, jsJsonServerMdx, jsOopMdx, jsObjectMdx, jsPrototypeMdx, jsCriticalRenderingPathMdx, nextAppDocMdx, nextImageMdx, nextPrerenderingMdx, reactAntd_paginationMdx, reactAxiosInstanceMdx, reactKakaoMapMdx, reactSkeletonMdx, reduxBasicMdx, reduxHooksMdx, reduxToolkitMdx, reduxToolkit_sagaMdx, reduxWhatMdx, tsBasicMdx, tsTodoMdx]
