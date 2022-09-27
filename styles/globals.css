@@ -28,16 +28,18 @@ li {
   cursor: pointer !important;
 }
 
-img {
-  width: 100px;
-  height: 100px;
-}
-
 .clickable:hover {
   opacity: 0.7;
 }
 
 .highlight {
+  color: #ec407a;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-right: 0.3125rem;
+}
+
+strong {
   color: #ec407a;
   font-size: 0.85rem;
   font-weight: 700;
