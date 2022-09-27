@@ -1,0 +1,191 @@
+---
+title: React로 Skeleton UI 만들기
+date: 2021-11-29
+description: Skeleton UI 직접 만들어보자 !
+thumbnail: /React-Skeleton/thumbnail.jpg
+tags: ['React']
+---
+
+<br />
+
+<p align="center">
+  <img src="/React-Skeleton/thumbnail.jpg" width="600" height="400" />
+</p>
+
+<br />
+
+위 프로젝트는 찾고자하는 도시와 동물의 종류를 선택하여 찾기 버튼을 누르면 우측에 동물의 Data를 보여주는 프로젝트이다
+
+서버에서 동물의 Data를  받아오기 전에 우측 화면에 아무런 UI가 없다면 사용자는 콘텐츠를 기다리다가 쉽게 지루함을 느낄 수 있고
+
+단순히 흰색 화면만 보여준다면 많은 사람들은 사이트를 떠나게 될 것이다.
+
+이 전에는 Loading bar 또는 Loading Spinner 등이 쓰였는데 최근 핫하다는 웹 페이지들은 모두 Skeleton을 사용하는 것 같다
+
+더 나은 UX를 위해서 **Skeleton UI** 를 배워보자
+
+<br />
+
+```typescript
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import Skeleton from './Skeleton';
+
+const List = () => {
+  const [list, SetList] = useState([]);
+
+  useEffect(() => {
+    setTimeout(async () => {
+      try {
+        const response = await axios('url/list');
+        const data = response.data;
+        SetList(() => {
+          return list.concat(data);
+        });
+      } catch {
+        throw new Error('데이터 조회 실패');
+      }
+    }, 1000);
+  }, []);
+
+  return (
+    <div>
+      // list가 있다면 list 렌더링 없다면 Skeleton 렌더링
+      {list ? list.map((listItem) => <div>{listItem}</div>) : <Skeleton />}
+    </div>
+  );
+};
+
+export default List;
+```
+
+<br />
+
+위의 코드는 axios로 Data를 받아와 list State에 받아온 Data를 저장하고 list 가 있으면 list를 렌더링하고 없다면 Skeleton 컴포넌트를
+
+렌더링하는 코드이다
+
+<br />
+
+```typescript
+import React from 'react';
+import * as style from './SkeletonStyle';
+import theme from '../../assets/styles/theme';
+
+function Skeleton() {
+  return (
+    <style.Div theme={theme}>
+      <style.Img theme={theme}>
+        <style.Shimmer />
+      </style.Img>
+      <style.Wrap theme={theme}>
+        <style.Text theme={theme}>
+          <style.Shimmer />
+        </style.Text>
+        <style.Text theme={theme}>
+          <style.Shimmer />
+        </style.Text>
+        <style.Text theme={theme}>
+          <style.Shimmer />
+        </style.Text>
+      </style.Wrap>
+    </style.Div>
+  );
+}
+
+export default Skeleton;
+```
+
+<br />
+
+Skeleton 컴포넌트의 코드를 살펴보자 여기서 주목해야할 것은 Shimmer의 역할이다
+
+Shimmer는 각 엘리먼트 안에 포함되어 그림자가 흐르는 듯한 애니메이션을 보여준다
+
+<br />
+
+<p align="center">
+  <img src="/React-Skeleton/example.jpg" width="600" height="150" />
+</p>
+
+<br />
+
+그림자가 흐르는 듯한 역할을 하는 것이 Shimmer의 역할이다
+
+CSS 코드를 보면서 살펴보자
+
+<br />
+
+```typescript
+import styled from 'styled-components';
+
+export const Shimmer = styled.div`
+  width: 50%;
+  height: 100%;
+  background-color: #e0e0e0;
+  box-shadow: 0 0 30px 30px #e0e0e0;
+  animation: loading 2s infinite;
+  @keyframes loading {
+    0% {
+      transform: translateX(-50%);
+    }
+    50% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translate(200%);
+    }
+  }
+`;
+
+export const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  height: 200px;
+  margin: 1em;
+  border: 1px solid #e8e7e6;
+  border-radius: 0.5em;
+  font-size: 0.7em;
+  overflow-x: visible;
+  cursor: pointer;
+  background-color: white;
+  box-shadow: 6px 6px 8px 0px rgba(217, 217, 217, 1);
+`;
+
+export const Img = styled.div`
+  width: 100%;
+  height: 150px;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  overflow: hidden;
+  background-color: #eeeeee;
+`;
+
+export const Wrap = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0.4rem;
+`;
+
+export const Text = styled.div`
+  width: 100px;
+  height: 10px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  background-color: #eeeeee;
+`;
+```
+
+<br />
+
+각 엘리먼트들은 div 태그로 생성되어 있으며 Data가 들어와 채워야할 자리에 임의로 크기를 지정하여 색을 입힌 것이다
+
+그리고 그 엘리먼트 내부에 Shimmer 엘리먼트를 삽입하여 애니메이션이 나오도록 하는 것이다
+
+Shimmer는 무한으로 상위 엘리먼트를 순환하며 애니메이션을 보여주고 Shimmer를 감싼 부모 태그에는 overflow: hidden 을 줘서
+
+Shimmer가 부모 태그 밖에서 보이지 않도록 막아준다
+
+위의 코드로 Skeleton을 만들면 하나의 list 밖에 나오지 않지만 Skeleton 컴포넌트 안에 있는 엘리먼트의 수를 늘린다면 원하는 만큼의 Skeleton UI를 생성 할 수 있다 !
