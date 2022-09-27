@@ -1,0 +1,571 @@
+---
+title: JavaScript (ES6) - Array APIs 총정리 - ( 유용한 10가지 배열 함수 )
+date: 2021-05-23
+description: 배열의 API들을 알아보자!
+thumbnail: /Common-Thumbnail/js.jpg
+tags: ['JavaScript']
+---
+
+자바스크립트 배열의 유용한 함수들을 알아보자 !
+
+<br />
+
+## Join
+
+Join은 배열에 존재하는 데이터들을 하나의 문자열로 만들어 주는 API이다 !
+
+바로 코드로 알아보자
+
+<br />
+
+```javascript
+const fruits = ['apple', 'banana', 'orange'];
+const result = fruits.join();
+console.log(result);
+```
+
+<br />
+
+우선 fruits 배열 안에 있는 세 개의 데이터를 result 변수에 하나로 만들어 주기 위해 join 을 해준다
+
+<br />
+
+result를 출력하면 어떻게 되는지 결과를 바로 알아보자
+
+```markdown
+apple,banana,orange
+```
+
+<br />
+
+출력이 될 때 자동적으로 콤마 , 가 사이에 출력되는 것을 알 수 있다 join의 괄호 () 에 구분자를 넣게 되면 데이터 사이에 다른 값이 출력된다
+
+<br />
+
+```javascript
+const result = fruits.join('|');
+```
+
+<br />
+
+이번에는 데이터 사이에 구분자 | 를 포함하여 출력해보자
+
+<br />
+
+```markdown
+apple|banana|orange
+```
+
+<br />
+
+---
+
+<br />
+
+## split
+
+이번에는 주어지는 문자열을 배열로 만들어주는 API이다
+
+예시를 통해 바로 알아보자 !
+
+<br />
+
+```javascript
+const fruits = 'apple, banana, orange, cherry';
+const result = fruits.split(',');
+console.log(result);
+```
+
+<br />
+
+split을 이용하여 fruits 안의 문자열을 배열로 만들 수 있다
+
+```markdown
+> (4) ['apple','banana','orange','cherry']
+```
+
+<br />
+
+이번에는 배열로 만들어지는 개수까지 지정해보자
+
+<br />
+
+```javascript
+const result = fruits.split(',', 3);
+```
+
+<br />
+
+위처럼 3개만 배열로 만들어지도록 해보았다
+
+```markdown
+(3) ['apple','banana','orange']
+```
+
+<br />
+
+---
+
+<br />
+
+## reverse
+
+이번에는 배열 안의 순서를 거꾸로 만들 수 있는 reverse이다
+
+<br />
+
+```javascript
+const array = [1, 2, 3, 4, 5];
+array.reverse();
+console.log(array);
+```
+
+<br />
+
+위와 같이 reverse를 사용하면 반대로 출력이 된다
+
+<br />
+
+```markdown
+(5) [5, 4, 3, 2, 1]
+```
+
+<br />
+
+배열의 순서가 거꾸로 뒤바뀐 것을 확인할 수 있다
+
+<br />
+
+---
+
+<br />
+
+## slice
+
+배열의 지정된 데이터를 빼고 새로운 배열을 생성하는 API를 알아보자
+
+저번 강의에 배운 **splice**는 배열 자체에 실제로 존재하는 값을 삭제하기 때문에 사용하지 못하고
+
+배열의 특정한 부분을 리턴하는 **slice** 를 사용하면 된다
+
+1과 2를 제외한 값들을 출력해보자
+
+<br />
+
+```javascript
+const array = [1, 2, 3, 4, 5];
+const result = array.slice(2, 5);
+console.log(result);
+console.log(array);
+```
+
+<br />
+
+여기서 주의할 점을 slice의 () 안에 첫 번째 인자는 어디서부터 시작할 건지 정해야 하기 때문에 2를 지정해 주었고
+
+두 번째 5라고 한 이유는 마지막 인덱스는 배제가 되기 때문에 4가 아닌 5라고 해주어야 한다
+
+<br />
+
+```markdown
+(3) [3, 4, 5\]; // result  
+(5) [1, 2, 3, 4, 5]; //array
+```
+
+<br />
+
+위에서 출력한 result는 2번째 자리부터 4번째 자리까지 잘려서 출력이 되었고
+
+splice와 다르게 원래 array의 데이터는 변화가 없는 것을 알 수 있다
+
+<br />
+
+---
+
+<br />
+
+## find
+
+다음은 클래스와 객체를 생성하여 찾고자 하는 값을 갖고 있는 객체를 찾는 find에 대해 알아보자
+
+우선 클래스와 객체를 선언해보자
+
+<br />
+
+```javascript
+class Student {
+  constructor(name, age, enrolled, score) {
+    this.name = name;
+    this.age = age;
+    this.enrolled = enrolled;
+    this.score = score;
+  }
+}
+const students = [
+  new Student('A', 29, true, 45),
+  new Student('B', 28, false, 80),
+  new Student('C', 30, true, 90),
+  new Student('D', 40, false, 66),
+  new Student('E', 18, true, 88),
+];
+```
+
+<br />
+
+find를 사용하여 점수가 90점인 학생을 찾아보자
+
+<br />
+
+```javascript
+const result = students.find((student) => student.score === 90);
+console.log(result);
+```
+
+<br />
+
+매개변수로 student 자리는 value인데 student 배열의 모든 학생들을 뜻한다!
+
+find는 뒤에 콜백함수가 호출이 되는데 boolean 형식으로 원하는 값이면 true 아니면 false로 찾는 방식이다
+
+**즉 위에서부터 순차적으로 점수가 90인 학생을 찾는다**
+
+<br />
+
+new Student('A', 29, true, 45) - score가 45이기 때문에 **false**
+
+new Student('B', 28, true, 80) - score가 80이기 때문에 **false**
+
+new Student('C', 30, true, 90) - score가 90이기 때문에 찾았으므로 **true!**
+
+콜백함수에 대해 간략히 짚고 넘어가자면 말 그대로 'Callback' 즉 어떤 조건에 의해 작업을 처리하다가 끝이 났음을 알려주는 함수이다
+
+<br />
+
+---
+
+<br />
+
+##filte
+
+<br />
+
+```javascript
+const students = [
+  new Student('A', 29, true, 45),
+  new Student('B', 28, false, 80),
+  new Student('C', 30, true, 90),
+  new Student('D', 40, false, 66),
+  new Student('E', 18, true, 88),
+];
+```
+
+<br />
+
+다음은 수업에 등록한 ( enrolled ) 학생들만 찾아 새로운 배열을 만들어 내는 **filter** 를 사용해보자
+
+<br />
+
+```javascript
+const result = students.filter((student) => student.enrolled);
+```
+
+<br />
+
+이번에도 Callback 함수로 찾는 것이다 filter도 find와 마찬가지로 bollean 으로 찾는 것이기 때문에 true를 찾는다 enrolled 이 되었다면 true로 설정해 두었으니 true인 학생만 찾아 배열을 만든다!
+
+<br />
+
+---
+
+<br />
+
+## map
+
+```javascript
+const students = [
+  new Student('A', 29, true, 45),
+  new Student('B', 28, false, 80),
+  new Student('C', 30, true, 90),
+  new Student('D', 40, false, 66),
+  new Student('E', 18, true, 88),
+];
+```
+
+<br />
+
+이번에는 학생들의 점수만으로 배열을 만드는 map에 대해서 알아보자
+
+<br />
+
+```javascript
+const result = students.map((student) => student.score);
+console.log(result);
+```
+
+<br />
+
+```markdown
+(5) [45, 80, 90, 66, 88]
+```
+
+<br />
+
+map 도 콜백함수를 호출한다 여기서 map 이란 student.score를 위와 같이 그대로 출력할 수 있고
+
+또는 곱하거나 더하기 등 다른 작업들을 해서 전달해 주는 mapping을 하는 API이다
+
+<br />
+
+```javascript
+const result = students.map((student) => student.score * 2);
+console.log(result);
+```
+
+<br />
+
+이번에는 점수에 2를 곱하여 mapping 하는 작업을 해보자
+
+<br />
+
+```markdown
+(5) [90, 160, 180, 132, 176]
+```
+
+<br />
+
+마지막으로 콜백함수안에 item이나 value와 같이 이름을 지정할 수 있는데 위의 코드는 한 줄 코드이기 때문에
+
+value.score라고 하면 바로 srudents 안에 있는 값들의 score 라고 알 수 있지만 코드가 길어지게 되면 한눈에 알아보기 어렵기 때문에 가급적이면 쉬운 이름을 짓는 것이 중요하다 !
+
+<br />
+
+---
+
+<br />
+
+## some, every
+
+```javascript
+const students = [
+  new Student('A', 29, true, 45),
+  new Student('B', 28, false, 80),
+  new Student('C', 30, true, 90),
+  new Student('D', 40, false, 66),
+  new Student('E', 18, true, 88),
+];
+```
+
+<br />
+
+50점보다 낮은 학생이 있는지 확인하는 some을 이용하여 찾아보자
+
+<br />
+
+```javascript
+const result = students.some((student) => student.score < 50);
+console.log(result);
+```
+
+<br />
+
+some도 마찬가지로 Callback 함수이며 50점 이하의 학생이 한 명이라도 존재한다면 true를 리턴한다
+
+결과는 true !
+
+<br />​
+
+다음은 모든 학생들의 점수가 50점보다 낮은지 높은지를 확인하는 every에 대해 알아보자
+
+<br />
+
+```javascript
+const result = students.every((student) => student.score < 50);
+console.log(result);
+```
+
+<br />
+
+모든 학생의 점수가 50점보다 낮지 않으니
+
+결과는 false !
+
+<br />
+
+---
+
+<br />
+
+## reduce
+
+이번에는 학생들의 점수를 평균을 구하기 위해 reduce에 대해 알아보자
+
+reduce는 평균을 구하는 API 아닌 배열을 처음부터 끝까지 돌면서 누적된 값을 구하는 API이다
+
+reduce는 이전 값 ( previous ) 와 현재 값 ( current ) 을 매개변수로 받아 어떠한 누적된 값을 구하는 것이다
+
+즉 **[1, 2, 3, 4]** 라는 배열이 있다고 가정해보자
+
+previous 값의 초기값을 0 으로 설정하고 current 값은 자동적으로 첫 번째 인자 값인 1이 할당된다
+
+그 후 마지막에 다음 previous 값을 리턴해주어야 한다
+
+이전 값 ( previous ) 와 현재 값 ( current ) 을 더해서 리턴하는 코드를 작성하였다면
+
+<br />​
+
+previous 0
+
+current 1
+
+\----------------
+
+previous 1
+
+current 2
+
+\----------------
+
+previous 3
+
+current 3
+
+\----------------
+
+previous 6
+
+current 4
+
+\----------------
+
+결과값 10
+
+위와 같이 로직이 돌아간다
+
+<br />
+
+#### previous 에는 리턴 값이 들어가고 current는 배열의 데이터를 순차적으로 전달받는다
+
+예 )
+
+```javascript
+const students = [
+  new Student('A', 29, true, 45),
+  new Student('B', 28, false, 80),
+  new Student('C', 30, true, 90),
+  new Student('D', 40, false, 66),
+  new Student('E', 18, true, 88),
+];
+```
+
+이를 코드로 작성해보면
+
+<br />
+
+```javascript
+const result = students.reduce((prev, curr) => prev + curr.score, 0);
+// prev 의 초기값을 0 으로 지정
+console.log(result / students.length);
+```
+
+우선 prev와 curr 으로 이전 값과 현재 값을 받고
+
+이전 값과 현재 값의 score 를 더해주면 score 를 모두 더한 값이 result에 할당이 된다
+
+<br />
+
+---
+
+<br />
+
+## 배열을 문자열로 변환
+
+```javascript
+const students = [
+  new Student('A', 29, true, 45),
+  new Student('B', 28, false, 80),
+  new Student('C', 30, true, 90),
+  new Student('D', 40, false, 66),
+  new Student('E', 18, true, 88),
+];
+```
+
+<br />
+
+학생들의 점수 배열을 하나의 문자열로 변환해보자
+
+<br />
+
+```javascript
+const result = students
+  .map((student) => student.score) //score만 배열로 생성
+  .filter((score) => score >= 50) //점수가 50점 이상인 배열로 구분
+  .join(); //score배열을 join 하여 하나의 문자열로 변환
+
+console.log(result);
+```
+
+<br />
+
+위와 같이 map으로 score를 mapping 하여 배열로 생성하고
+
+filter를 사용하여 점수가 50점 이상인 score만 따로 구분했다
+
+join을 이용하여 배열을 하나의 문자열로 변환 !
+
+<br />
+
+```markdown
+> 80, 90, 66, 88
+```
+
+<br />
+
+## sort
+
+```javascript
+const students = [
+  new Student('A', 29, true, 45),
+  new Student('B', 28, false, 80),
+  new Student('C', 30, true, 90),
+  new Student('D', 40, false, 66),
+  new Student('E', 18, true, 88),
+];
+```
+
+<br />
+
+마지막으로 배열을 sort로 정렬한 뒤 문자열로 만들어보자
+
+<br />
+
+```javascript
+const result = students
+  .map((student) => student.score) //score 만 존재하는 배열을 생성한다
+  .sort((a, b) => a - b) // 오름차순으로 정렬 a - b
+  .join(); //join 하여 문자열 생성
+console.log(result);
+```
+
+<br />
+
+우선 map으로 score만 존재하는 배열을 만든 후에
+
+sort로 a 와 b의 값을 받아 a - b 를 해준다 ( a - b ) 는 오름차순으로 정렬이다
+
+마지막으로 join으로 문자열을 생성한다
+
+​
+
+내림차순으로 정렬을 할 때에는
+
+```javascript
+.sort((a, b) => b - a);
+```
+
+b - a 라고 해주면 내림차순으로 정렬이 된다
+
+<br />
+
+### Reference
+
+[https://www.youtube.com/watch?v=yOdAVDuHUKQ&list=PLv2d7VI9OotTVOL4QmPfvJWPJvkmv6h-2&index=8](https://www.youtube.com/watch?v=yOdAVDuHUKQ&list=PLv2d7VI9OotTVOL4QmPfvJWPJvkmv6h-2&index=8)
