@@ -2,30 +2,103 @@
 title: 자바스크립트가 싱글스레드지만 비동기로 동작하는 이유
 date: 2022-03-11
 description: 싱글스레드인 JS가 어떻게 비동기로 동작할까?
-thumbnail: /JS-Async/thumbnail.png
+thumbnail: /JS-Async/thumbnail.jpg
 tags: ['JavaScript']
 ---
 
-## 제목
+우선 글을 시작하기 전에 스레드에 대한 간단한 개념부터 이해하고 가면 좋을 듯하다.
 
-- `내용 1`
-- 내용 2
+<br />
 
-```javascript
-const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const MDXComponent = useMDXComponent(post.body.code);
-  return (
-    <Container>
-      <PostTitle>{post.title}</PostTitle>
-      <Date>{post.date}</Date>
-      <MDXComponent />
-    </Container>
-  );
-};
-```
+## 프로세스와 스레드 차이
 
-![Test](/assets/Profile.jpg)
+프로세스는 메모리 상에서 실행중인 프로그램을 말하며, 스레드는 이 프로세스 안에서 실행되는 흐름 단위를 말한다.
 
-Test
+프로세스마다 최소 하나의 스레드를 보유하고 있으며, 각각 별도의 주소 공간을 독립적으로 할당받는다. (code, data, heap, stack)
 
-![waterfall-chart](https://raw.githubusercontent.com/Songchangyeop/Blog/main/assets/Profile.jpg)
+스레드는 이중에 stack만 따로 할당받고 나머지 영역은 스레드끼리 서로 공유한다.
+
+<br />
+
+**프로세스** : 자신만의 고유 공간과 자원을 할당받아 사용
+
+**스레드** : 다른 스레드와 공간과 자원을 공유하면서 사용
+
+즉 스레드는 실행되는 흐름의 단위이며 멀티스레드 환경에서는 이 스레드가 다중적으로 이루어져 있기 때문에
+
+한 번에 많은 일들을 처리할 수 있는 것이다.
+
+<br />
+
+<p align="center">
+  <img src="/JS-Async/thumbnail.jpg" width="500" height="400" />
+</p>
+
+<br />
+
+하지만 자바스크립트의 V8엔진은 **싱글 스레드로** 이루어져 있다.
+
+이 말은 자바스크립트 엔진은 하나의 메모리 힙과 단일 호출 스택(**Call Stack**)을 가지고 있다 라는 말과 같다.
+
+즉 하나의 메인스레드에서 호출되는 함수들이 **Call Stack**에 쌓이게 되고 LIFO(Last In First Out) 방식으로 한 번에
+
+하나의 함수만 실행된다.
+
+그럼 이제 어떻게 싱글스레드인 자바스크립트가 **비동기적**으로 이루어 지는지 알아보자
+
+<br />
+
+## 비동기적?
+
+비동기적(Asynchronous) 이란, **먼저 실행된 코드의 작업이 끝나기 전에 더 나중에 실행된 코드의 작업이 끝날 수 있음을 말한다.** 즉, 동시성을 가지고 있는 코드들을 말한다.
+
+<br />
+
+<p align="center">
+  <img src="/JS-Async/loop.jpg" width="600" height="400" />
+</p>
+
+<br />
+
+왼쪽은 자바스크립트의 엔진이고 그 밖에  WebAPI, Callback Queue, Event Loop와 같이 자바스크립트의 동작에 관여하는 것들이 존재한다
+
+<br />
+
+## Web API
+
+**Web API**는 **브라우저에서 제공하는 API**이며, Ajax, Timeout 등 비동기작업을 실행한다.
+
+SetTimeOut을 예로들어 동작을 설명하면,
+
+Callback에 SetTimeOut을 실행하면 자바스크립트 엔진이 **Web API**에게 SetTimeOut 함수를 요청하게 되고
+
+같이 호출된 콜백함수는 **Callback Queue** 에 들어가게 된다. **이후 EventLoop가 Call Stack이 비었다는 것을 확인**하면
+
+콜백 함수를 Call Stack에 넣어 실행하게 된다.
+
+<br />
+
+## Callback Queue
+
+비동기로 실행된 콜백 함수들이 Call Stack에 들어가기 전 대기하는 대기공간이라고 보면 될 것 같다.
+
+**Call Stack에 실행중인 작업이 존재하는지 Event Loop가** 판단하고 비어있다면 Call Stack으로
+
+순서대로 이동하게 된다.
+
+- **Queue(큐)** : 자료구조중 하나로 FIFO(First In First Out)의 구조이다.
+
+<br />
+
+## Event Loop
+
+Event Loop는 **Call Stack과 Callback Queue를 반복적으로 관찰**하다가 Call Stack이 비어있는 상태가 되면
+
+Callback Queue의 콜백 함수를 옮기는 역할을 한다
+
+<br />
+<br />
+
+자바스크립트는 단일 스레드 프로그래밍 언어이기 때문에 한 번에 하나의 task밖에 실행할 수 없지만
+
+**Web API, Callback Queue, Event Loop** 의 역할로 인해 멀티 스레드처럼 보이는 것이다.
