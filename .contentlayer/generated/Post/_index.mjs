@@ -23,7 +23,8 @@ import reduxBasicMdx from './Redux-Basic.mdx.json'
 import reduxHooksMdx from './Redux-Hooks.mdx.json'
 import reduxToolkitMdx from './Redux-Toolkit.mdx.json'
 import reduxToolkit_sagaMdx from './Redux-Toolkit_Saga.mdx.json'
+import reduxWhatMdx from './Redux-What.mdx.json'
 import tsBasicMdx from './TS-Basic.mdx.json'
 import tsTodoMdx from './TS-Todo.mdx.json'
 
-export const allPosts = [couchPlanningMdx, couchRetrospectMdx, feResponseCodeMdx, jsArray_apisMdx, jsAsyncMdx, jsCorsMdx, jsGeolocationMdx, jsHoistingMdx, jsJsonMdx, jsJsonServerMdx, jsPrototypeMdx, jsCriticalRenderingPathMdx, nextAppDocMdx, nextImageMdx, nextPrerenderingMdx, reactAntd_paginationMdx, reactAxiosInstanceMdx, reactKakaoMapMdx, reactSkeletonMdx, reduxBasicMdx, reduxHooksMdx, reduxToolkitMdx, reduxToolkit_sagaMdx, tsBasicMdx, tsTodoMdx]
+export const allPosts = [couchPlanningMdx, couchRetrospectMdx, feResponseCodeMdx, jsArray_apisMdx, jsAsyncMdx, jsCorsMdx, jsGeolocationMdx, jsHoistingMdx, jsJsonMdx, jsJsonServerMdx, jsPrototypeMdx, jsCriticalRenderingPathMdx, nextAppDocMdx, nextImageMdx, nextPrerenderingMdx, reactAntd_paginationMdx, reactAxiosInstanceMdx, reactKakaoMapMdx, reactSkeletonMdx, reduxBasicMdx, reduxHooksMdx, reduxToolkitMdx, reduxToolkit_sagaMdx, reduxWhatMdx, tsBasicMdx, tsTodoMdx]
