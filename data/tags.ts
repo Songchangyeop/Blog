@@ -5,5 +5,6 @@ export const tags = [
   'JavaScript',
   'TypeScript',
   'Redux',
+  'FrontEnd',
   'Career',
 ];
