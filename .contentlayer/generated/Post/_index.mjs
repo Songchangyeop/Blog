@@ -12,5 +12,6 @@ import nextPrerenderingMdx from './Next-Prerendering.mdx.json'
 import reactAntd_paginationMdx from './React-Antd_Pagination.mdx.json'
 import reactAxiosInstanceMdx from './React-AxiosInstance.mdx.json'
 import reactKakaoMapMdx from './React-KakaoMap.mdx.json'
+import couchPlanningMdx from './Couch-Planning.mdx.json'
 
-export const allPosts = [couchRetrospectMdx, jsAsyncMdx, jsCorsMdx, jsGeolocationMdx, jsHoistingMdx, jsJsonServerMdx, nextAppDocMdx, nextImageMdx, nextPrerenderingMdx, reactAntd_paginationMdx, reactAxiosInstanceMdx, reactKakaoMapMdx]
+export const allPosts = [couchRetrospectMdx, jsAsyncMdx, jsCorsMdx, jsGeolocationMdx, jsHoistingMdx, jsJsonServerMdx, nextAppDocMdx, nextImageMdx, nextPrerenderingMdx, reactAntd_paginationMdx, reactAxiosInstanceMdx, reactKakaoMapMdx, couchPlanningMdx]
