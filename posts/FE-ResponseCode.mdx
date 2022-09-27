@@ -1,0 +1,43 @@
+---
+title: HTTP 응답 코드 401(Unauthorized) vs 403(Forbidden) 차이점
+date: 2022-01-02
+description: 401과 403의 차이점은 뭘까?
+thumbnail: /FE-ResponseCode/thumbnail.jpg
+tags: ['FrontEnd']
+---
+
+4xx 대 에러는 클라이언트 측에서 잘못된 **요청(request)** 을 보냈을 때 발생하는 에러다.
+
+그 중 **401** 에러와 **403** 에러는 모두 인증이 안됐을 때 발생하는데, 두 에러에대한 차이점을 알아보자
+
+<br />
+
+## 401 에러
+
+**401 (Unauthorized)** 클라이언트 오류 상태 응답 코드는 해당 리소스에 유효한 인증 자격 증명이 없기 때문에 요청이 적용되지 않았음을 나타낸다.
+
+즉 클라이언트가 **인증되지 않았을 때** 발생하는 에러라고 보면 된다.
+
+대체로 로그인 하지 않은 상태에서 글을 작성하거나 마이페이지를 조회하려고 할 때 서버는 401 에러를 반환한다.
+
+<br />
+
+## 403 에러
+
+**403 (Forbidden)** 클라이언트 오류 상태 응답 코드는 서버에 요청이 전달되었지만, 권한 때문에 거절되었다는 것을 의미한다.즉 로그인은 했지만 권한 밖의 일을 수행할 때, 예를 들어 어떤 강의를 구매를 하지 않았지만 그 강의에 접근할 때 (403 Forbidden)를 반환한다.
+
+### 정리
+
+두 에러코드 모두 어떠한 일을 하려 했지만 요청이 거부 되었을 때 나타나는 에러들이다
+
+**401 (**Unauthorized**)** : 로그인 하지 않고 로그인 된 사용자만 할 수 있는 일을 하려 할 때
+
+**403 (**Forbidden**)** : 로그인은 했지만 권한 밖의 일을 수행 할 때
+
+<br />
+
+#### Reference
+
+[https://developer.mozilla.org/ko/docs/Web/HTTP/Status/403](https://developer.mozilla.org/ko/docs/Web/HTTP/Status/403)
+
+[https://junior-datalist.tistory.com/130](https://junior-datalist.tistory.com/130)
