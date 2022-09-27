@@ -1,0 +1,148 @@
+---
+title: Redux Toolkit 에 대하여 알아보기
+date: 2021-06-12
+description: Redux Toolkit과 함께 Redux를 더욱 편리하게 사용해보자!
+thumbnail: /Common-Thumbnail/redux.jpg
+tags: ['Redux']
+---
+
+리덕스를 공부하다 Velopert님의 블로그에서 Redux Toolkit이 리덕스 개발의 필수품이라는 글을 읽고 Redux Toolkit에 대해 흥미를 가지고 공부를 시작했다.
+
+<br />
+
+## Redux Toolkit의 탄생 이유
+
+Redux Toolkit은 리덕스공식 홈페이지에서 해당 관심사를 해결하기 위하여 만들어 졌다고 한다
+
+Redux 저장소 구성이 너무 복잡다
+
+Redux가 유용한 기능을 수행 할 수 있도록 많은 패키지를 추가해야 한다
+
+Redux에는 보일러플레이트 코드가 너무 많이 필요하다 ( 액션타입, 액션생성함수, 리듀서 3가지가 필요하다 )
+
+즉 **Redux Toolkit은 리덕스를 더욱 편리하게 사용하기 위하여 만들어진 도구** 이다
+
+<br />
+
+## Redux Toolkit의 특징
+
+Redux Toolkit에는 다음과 같은 기능이 제공된다
+
+**configureStore()** 함수는 Slice 리듀서를 자동으로 결합하고 제공하는 Redux 미들웨어를 추가하고, 기본적으로 redux-thunk를 포함하며 Redux DevTools Extension을 사용할 수 있다.
+
+**createReducer()** 유틸리티는 switch 문을 작성하지 않고 reducer함수를 작성할 수 있도록 한다. 또한 immer 라이브러리를 사용하여 일반적인 코드로 더 간단하게 불변성을 유지하면서 상태를 업데이트할 수 있다.
+
+**createAction()** 유틸리티는 주어진 action type에 따라 action create함수를 반환한다. 함수 자체에toString()이 정의되어 있으므로 별도의 상수를 선언할 필요 없이 함수 이름을 사용할 수 있다.
+
+**createSlice()** 함수 리듀서 함수 세트로서, 슬라이스 이름 및 초기 상태 값을 받아서 자동으로 slice reducer와 action creator, action types를 생성한다.
+
+**createSelector()** 유틸리티는 Reselect 라이브러리를 사용하기 쉽도록 re-export한 것이다.
+
+출처 ( Redux Toolkit 공식 홈페이지 )
+
+<br />
+
+## Redux Toolkit 설치
+
+```markdown
+// NPM  
+ npm install @reduxjs/toolkit
+
+// Yarn  
+ yarn add @reduxjs/toolkit
+```
+
+<br />
+
+## configureStore
+
+```typescript
+import rootReducer from './modules';
+import { configureStore } from '@reduxjs/toolkit';
+
+const store = configureStore({ reducer: rootReducer });
+```
+
+<br />
+
+Redux Toolkit을 사용하지 않고 Store를 생성할 때는  ​redux가 제공하는 createStore 를 이용해 생성했다.
+
+Redux-Toolkit 의 **configureStore 는** 위 처럼 reducer 필드를 필수적으로 넣어주어야 한다
+
+createStore를 사용하여 Store를 생성할 때와는 다르게 기본적으로**Redux DevTools Extension** 을 제공한다.
+
+<br />
+
+## createAction
+
+```typescript
+const INCREASE = 'counter/INCREASE';
+const DECREASE = 'counter/DECREASE';
+
+export const increase = createAction(INCREASE);
+export const decrease = createAction(DECREASE);
+```
+
+<br />
+
+createAction은 이전 포스팅에서 Redux Toolkit을 사용하지 않고도 createAction을 사용했었는데 Redux Toolkit에서 기본적으로 제공하는 기능이니 적극 활용하여 코드를 줄이도록 하자
+
+<br />
+
+## createReducer
+
+```typescript
+const counter = createReducer(initialState, {
+  [INCREASE]: (state, action) => ({ number: state.number + 1 }),
+  [DECREASE]: (state, action) => ({ number: state.number - 1 }),
+});
+```
+
+<br />
+
+리듀서를 생성하는 함수로 이전 포스팅에서는 **handleActions** 라는 함수를 사용했었는데 Redux Toolkit에서 제공하는 createReducer와 사용방법은 전반전으로 비슷한 것 같다
+
+switch를 쓰지 않고 Reducer를 생성한다는 것이 아주 편리하다
+
+createReducer 의 첫번 째 인자값인 initialState 의 위치만 handleActions와 다른 점이다
+
+​<br />
+
+## createSlice
+
+createSlice 는 action과 Reducer를 한번에 생성하는 함수이다
+
+<br />
+
+```typescript
+const counter = createSlice({
+  name: 'counter',
+  initialState: {
+    number: 0,
+  },
+  reducers: {
+    increase: (state, action) => ({ number: state.number + 1 }),
+    decrease: (state, action) => ({ number: state.number - 1 }),
+  },
+});
+```
+
+<br />
+
+name 속성은 액션의 경로를 잡아줄 해당 이름을 나타내고, initialState는 초기값을 나타낸다.
+
+reducer는 createReducer의 구조와 비슷하다
+
+reducers 안의 코드들은 액션 타입, 액션 생성 함수, Reducer 의 기능이 합쳐져 있는 함수라고 할 수 있다.
+
+<br />
+
+## Immer
+
+리액트를 통해 개발할 때 **불변성의 유지**를 위해 push와 같은 기존 Data에 영향이 가는 메소드 대신에  state 를 직접 건드리지 않고 복사해서 새로 생성해내는 concat, filter와 같은 메소드를 이용해 왔었다.
+
+Redux-Toolkit 의 createReducer 와 createSlice 함수는 불변성을 신경쓰지 않아도 자동으로 불변성을 유지해주는
+
+**Immer** 라이브러리를 가지고있다
+
+Redux Toolkit을 사용하면 Immer의 기능으로 인해서 return 하지 않아도 자동으로 불변성을 유지하면서 사용할 수 있다.​
