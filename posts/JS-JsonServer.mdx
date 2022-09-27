@@ -1,0 +1,113 @@
+---
+title: json-server 를 이용한 Mock 데이터 생성
+date: 2022-02-06
+description: json-server에 대해 알아보고 이를 활용하여 Mock 데이터를 생성해보자
+thumbnail: /JS-JsonServer/thumbnail.jpg
+tags: ['JavaScript', 'FrontEnd']
+---
+
+기획 단계가 지나가고 실제로 팀 프로젝트가 시작이 되었다.
+
+백엔드와 프론트엔드 개발의 속도 차이가 있기 때문에 백엔드 API 가 완성 될 때 까지 프론트엔드는 무엇을 해야할까 ?
+
+바로 백엔드팀에서 API 개발 완료될때까지 json - server를 이용하여 가상의 데이터, api 를 생성하여 실제 API가 있다고 가정하고
+
+컴포넌트 개발을 시작하다가 추후 실제 API를 연동하면 되겠다.
+
+<br />
+
+설치 방법
+
+```shell
+npm install -g json-server
+```
+
+<br />
+
+설치가 완료 되었다면
+
+<p align="center">
+  <img src="/JS-JsonServer/structure.jpg" width="250" height="100" />
+</p>
+
+<br />
+
+위와 같이 프로젝트 폴더 내부 최상위에 json-server라는 폴더를 생성하고 그 안에 db.json이라는 파일을 만들자.
+
+이제 실제 개발 될 API 문서를 참고하여 db.json 파일안에 mock 데이터를 생성하면 되겠다.
+
+아래는 실제 개발에 사용 된 데이터이며 response가 상당히 길어서 절반은 잘랐다 ...ㅎ
+
+<br />
+
+```json
+"camp":
+    {
+      "addr1": "경상남도 창원시 의창구 북면 달천길 150 ",
+      "animalCmgCl": "가능(소형견)",
+      "autoSiteCo": 31,
+      "caravSiteCo": 4,
+      "glampSiteCo": 4,
+      "doNm": "경상남도",
+      "eqpmnLendCl": "텐트,화로대,난방기구,식기,침낭",
+      "extshrCo": 50,
+      "facltNm": "달천공원오토캠핑장 ",
+      "featureNm": "천주산의 계곡이 좋고 도심과 가까움",
+      "fireSensorCo": 0,
+      "firstImageUrl": "https://gocamping.or.kr/upload/camp/704/thumb/thumb_720_6835LN3Y4PG4YQDWJo1y7Vvr.jpg",
+      "homepage": "http://camp.changwon.go.kr/",
+      "induty": "일반야영장,자동차야영장,카라반",
+      "indvdlCaravSiteCo": 0,
+      "intro": "달천공원 오토캠핑장은 창원시 북면 천주산 달천계곡에 위치하고 있다.",
+      "lctCl": "산,숲,계곡,도심",
+      "lineIntro": "사계절 서로 다른 매력의 캠핑을 즐길 수 있는 곳",
+
+        ....
+    },
+```
+
+<br />
+
+위 처럼 db.json 안에 사용해야할 가상의 데이터가 생성되었다면
+
+다음 명령어를 통해 json-server를 실행시켜보자 !
+
+<br />
+
+```shell
+npx json-server --watch json-server/db.json --port 3001
+```
+
+<br />
+
+3000 포트는 리액트 개발서버가 사용하는 기본포트이기 때문에 요청 포트 번호를 3001 으로 해준다 !
+
+( 꼭 3001이 아니더라도 괜찮다 )
+
+아래와 같이 axios를 사용하여 json-server로 생성된 mock 데이터를 받아와보도록 하자
+
+<br />
+
+```typescript
+import axios from 'axios';
+
+export async function getCamp() {
+  try {
+    const response = await axios('http://localhost:3001/camp');
+    const data = response.data;
+    return data;
+  } catch (error) {
+    throw new Error('Failed to load data');
+  }
+}
+```
+
+<br />
+
+---
+
+<br />
+
+json-server 를 이용해서 백엔드 API가 개발되기 전에 미리 가상 API를 통해 data를 받아 프로토타입을 만들거나
+
+공부를 위하여 서버가 필요할때에 사용하면 아주 적당할 것 같다 👍👍
