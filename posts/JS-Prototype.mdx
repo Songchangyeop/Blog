@@ -1,0 +1,100 @@
+---
+title: JavaScript (ES6) - Prototype
+date: 2021-05-20
+description: Prototype이란?
+thumbnail: /Common-Thumbnail/js.jpg
+tags: ['JavaScript']
+---
+
+### 자바스크립트는 기본 타입을 제외한 모든 것을 객체로 분류한다.
+
+즉, **number, string, boolean, null, undefined** 와 같은 기본 타입을 제외한 모든 값은 객체다.
+
+따라서 배열, 함수, 정규 표현식 등도 모두 자바스크립트 객체로 표현됩니다!
+
+자바스크립트의 모든 객체는 자신의 부모 역할을 하는 객체와 연결되어 있다.
+
+즉, 객체는 객체지향의 상속 개념과 같이 부모 객체의 프로퍼티를 자신의 프로퍼티로써 사용할 수 있다
+
+객체가 생성이 되면서 자동적으로 가지게 되는 부모 객체를 **프로토타입 객체 ( Prototype )** 라고 부른다
+
+<br />
+
+---
+
+<br />
+
+예를 통해 살펴보자
+
+## Prototype
+
+```javascript
+let song = {
+  name: 'song',
+  age: 25,
+};
+
+let choi = new Object();
+choi.name = 'choi';
+choi.age = 24;
+
+let arr = [1, 2, 3, 4];
+
+console.log(song.toString());
+
+console.log(song);
+console.log(choi);
+console.log(arr);
+```
+
+<br />
+
+1\. 우선 객체 리터럴 방식으로 song 객체를 생성한다
+
+2\. Object 생성자 함수를 통해 choi라는 객체를 생성하고 프로퍼티를 추가해 준다
+
+3\. arr 라는 배열 객체를 생성한다
+
+4\. song 객체의 toString 메서드를 호출해서 출력한다
+
+5\. song, choi, arr를 출력한다
+
+<br />
+
+결과를 확인해보자
+
+<br />
+
+<p align="center">
+  <img src="/JS-Prototype/result.png" width="300" height="400" />
+</p>
+
+<br />
+
+우선 song, choi, arr 모두 \_\_proto\_\_ 라는 프로퍼티를 가진 것을 확인할 수 있다
+
+이는 이 셋 모두가 객체이기 때문이다
+
+ECMAScript 명세서에는 자바스크립트의 모든 객체는 생성이 되면서 부모인 prototype을 가리키는
+
+\[Prototype\] 프로퍼티를 가진다고 설명한다
+
+이 \[Prototype\] 프로퍼티는 크롬 브라우저에서 \_\_proto\_\_ 프로퍼티 형태로 구현되어 있다
+
+따라서 song 객체는 toString() 메서드가 없으므로 에러가 발생하여야 하지만, song 객체의 프로토타입에
+
+toSring() 메서드가 이미 정의되어 있고 song 객체가 상속한 것처럼 toString 메서드를 호출했기 때문이다
+
+<br />
+
+<p align="center">
+  <img src="/JS-Prototype/property.jpg" width="500" height="500" />
+</p>
+
+<br />
+
+song 객체 내부의 \_\_proto\_\_ 프로퍼티 안에 toString 메서드가 존재하는 것을 확인할 수 있다
+
+추가로 arr는 배열이면서 객체이기 때문에 Array prototype 을 갖는다
+
+그러므로 map, filter 같은 메서드를 호출할 수 있는 것이다
