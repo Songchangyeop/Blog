@@ -1,0 +1,258 @@
+---
+title: JavaScript (ES6) - 서버 통신의 시작 JSON
+date: 2021-05-23
+description: Json이 뭐지?
+thumbnail: /Common-Thumbnail/js.jpg
+tags: ['JavaScript']
+---
+
+## JSON
+
+### JavaScript Object Notation
+
+JSON 이란 웹 브라우저와 웹 서버 간 비동기 통신, 웹 서버 간의 데이터 교환 등에 주로 사용된다 또 브라우저뿐만 아니라 모바일에서 서버와 주고받을 때, 또는 서버와 통신을 하지 않아도 오브젝트를 파일시스템에 저장할 때도 JSON을 이용한다!
+
+JSON은 **key** 와 **value** 로 이루어져 있다
+
+오브젝트를 직렬화 ( serialize ) 해서 어떻게 JSON으로 변환할지, 직렬화된 JSON을 ( deserialize ) 해서 다시 오브젝트로 변환할지를 중점적으로 알아보자
+
+<br />
+
+## Object to JSON
+
+오브젝트를 JSON으로 변환하는 방법에 대해 알아보자
+
+<br />
+
+```javascript
+let json = JSON.stringify;
+```
+
+위처럼 JSON 오브젝트 안에 있는 두 가지 API 중에 stringify를 이용하면 되면 오브젝트를 JSON으로 변환할 수 있다
+
+​<br />
+
+이제 배열을 JSON으로 변환해보자
+
+<br />
+
+```javascript
+json = JSON.stringify(['apple', 'banana']);
+console.log(json);
+```
+
+<br />
+
+위와 같이 apple과 banana라는 배열을 JSON으로 변환하면
+
+<br />
+
+```markdown
+["apple","banana"]
+```
+
+위와 같이 변환이 된다
+
+<br />
+
+이번에는 오브젝트를 JSON으로 변환해보자
+
+```javascript
+const rabbit = {
+  name: 'tori',
+  color: 'white',
+  size: null,
+  birthDate: new Date(),
+  jump: () = > {
+    console.log(`${this.name} can jump!`);
+  },
+};
+
+let json = JSON.stringify(rabbit);
+console.log(json);
+```
+
+<br />
+
+위와 같이 rabbit이라는 오브젝트를 만들어 보았다 그 후 json을 출력해보면
+
+<br />
+
+```markdown
+{"name":"tori","color":"white","size":null, "birthDate":"2020-09-03T17:08:11 ... "}
+```
+
+위와 같이 출력이 되는데 jump는 출력이 안 되는 걸 확인할 수 있다
+
+jump는 오브젝트에 있는 데이터가 아니기 때문에 제외되는 것이다
+
+<br />
+
+또 JSON으로 변환되는 데이터를 제한할 수도 있는데
+
+<br />
+
+```javascript
+let json = JSON.stringify(rabbit, ['name', 'color']);
+console.log(json);
+```
+
+<br />
+
+위처럼 원하는 프로퍼티만 JSON 변환하게 할 수 있다'
+
+```markdown
+{"name":"tori","color":"white"}
+```
+
+<br />
+
+또 콜백 함수를 이용하는 방법도 있다
+
+```javascript
+let json = JSON.stringify(rabbit, (key, value) => {
+  console.log(`key: ${key}, value: ${value}`);
+  return key === 'name' ? 'song' : value;
+});
+console.log(json);
+```
+
+위처럼 key와 value를 전달받는 콜백 함수를 호출하게 되면
+
+​<br />
+
+콘솔에 rabbit의 key와 value들이 전달이 되고
+
+return에 key로 name이 포함되면 'song'으로 바꾸고 name이 아닐 경우 원래의 value로 값을 전달하게 된다
+
+```markdown
+{"name":"song","color":"white","size":null,"birthDate":"2020-09-03T17:08:11 ... "}
+```
+
+<br />
+
+name이 'song'으로 변경된 것을 알 수 있다
+
+<br />
+
+---
+
+<br />
+
+## JSON to Object
+
+이번에는 JSON을 오브젝트로 변환하는 **parse**에 대해서 알아보자
+
+<br />
+
+```javascript
+const rabbit = {
+  name: 'tori',
+  color: 'white',
+  size: null,
+  birthDate: new Date(),
+  jump: () = > {
+    console.log(`${this.name} can jump!`);
+  },
+};
+```
+
+<br />
+
+예시를 위해 위에서 만든 객체를 다시 보기!
+
+<br />
+
+```javascript
+let json = JSON.stringify(rabbit);
+const obj = JSON.parse(json);
+console.log(json);
+```
+
+<br />
+
+우선 json 변수에 rabbit 오브젝트를 JSON으로 변환해서 전달했다
+
+그 이후 parse를 사용해 json을 다시 obj로 변수로 넘겨 주면서 **deserialize** 되었다!
+
+출력해보면
+
+<br />
+
+```javascript
+> {name:"tori",color:"white",size:null,
+> birthDate:"2020-09-03T17:08:11 ... "}
+```
+
+위처럼 rabbit 오브젝트가 출력이 된다
+
+​
+
+여기서 **포인트 !**
+
+<br />
+
+```javascript
+console.log(rabbit.birthDate.getDate());
+console.log(obj.birthDate.getDate());
+```
+
+<br />
+
+rabbit 의 birthDate는 Date() 라는 API를 사용한 것이고 ( 아래를 참고 )
+
+```javascript
+birthDate: new Date();
+```
+
+<br />
+
+obj 는 rabbit을 JSON으로 문자열을 넘겨 주었기 때문에 (아래를 참고)
+
+```markdown
+{"name":"song","color":"white","size":null,"birthDate":"2020-09-03T17:08:11 ... "}
+```
+
+<br />
+
+rabbit의 getDate는 정상적으로 출력이 되지만
+
+obj의 getDate는 오류가 발생한다
+
+<br />
+
+이 문제를 해결하기 위해 reviver 이라는 콜백함수를 쓸 수 있는데
+
+```javascript
+let json = JSON.stringify(rabbit);
+const obj = JSON.parse(json, (key, value) => {
+  return key === 'birthDate' ? new Date(value) : value;
+});
+
+console.log(json);
+```
+
+<br />
+
+위에서 key와 value를 받아 리턴을 하는데 key에 birthDate 라는 key가 들어왔을 경우 새로운 Date라는 오브젝트를 만들고 key가 birthDate 가 아니라면 그대로 원래 있던 value 를 쓰도록 했다
+
+​
+
+이렇게 해주고 나서
+
+```javascript
+console.log(rabbit.birthDate.getDate());
+console.log(obj.birthDate.getDate());
+```
+
+<br />
+
+다시 한번 똑같이 getDate 를 사용하면 같은 값이 정상적으로 출력이 된다 !
+
+​
+
+<br />
+
+Reference
+
+[https://www.youtube.com/watch?v=yOdAVDuHUKQ&list=PLv2d7VI9OotTVOL4QmPfvJWPJvkmv6h-2&index=8](https://www.youtube.com/watch?v=yOdAVDuHUKQ&list=PLv2d7VI9OotTVOL4QmPfvJWPJvkmv6h-2&index=8)
