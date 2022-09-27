@@ -2,7 +2,7 @@
 
 <br>
 
-### [Dev.song](https://github.com/MiryangJung/miryang.dev)
+### [Dev.song](https://next-blog-songchangyeop.vercel.app/)
 
 <br>
 
