@@ -61,9 +61,9 @@ const Home = ({ posts }: PropTypes) => {
 };
 
 export const getStaticProps = () => {
-  const posts = allPosts.sort(
-    (a, b) => Number(new Date(b.date)) - Number(new Date(a.date)),
-  );
+  const posts = allPosts
+    .sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)))
+    .slice(0, 4);
   return {
     props: {
       posts,

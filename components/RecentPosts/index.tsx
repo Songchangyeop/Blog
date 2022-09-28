@@ -20,7 +20,7 @@ const RecentPosts = ({ posts }: RecentPostsType) => {
     <Container>
       <Header>Recent Posts.</Header>
       <Posts>
-        {posts.slice(0, 4).map((post) => (
+        {posts.map((post) => (
           <Link
             key={post._id}
             href={`/blog/${post._raw.flattenedPath}`}

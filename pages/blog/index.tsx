@@ -15,8 +15,6 @@ interface PropType {
 }
 
 function Blog({ posts }: PropType) {
-  console.log(posts);
-
   const router = useRouter();
   const { tag } = router.query;
 
