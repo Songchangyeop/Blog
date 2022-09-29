@@ -1,3 +1,4 @@
+import Utterances from 'components/Utterances';
 import { allPosts } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { NextSeo } from 'next-seo';
@@ -14,6 +15,7 @@ const Post = ({ post }: PostType) => {
       <PostTitle>{post.title}</PostTitle>
       <Date>{post.date}</Date>
       <MDXComponent />
+      <Utterances />
     </Container>
   );
 };
