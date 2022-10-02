@@ -1,0 +1,478 @@
+---
+title: Next.js 알아보기
+date: 2022-09-11
+description: Next.js의 개념과 어떤 기능을 제공하는지 알아보자
+thumbnail: /Common-Thumbnail/next.jpg
+tags: ['Next.js']
+---
+
+Next.js의 개념에 대해 알아보는 글
+
+최근에 알게 된 정보들을 정리하는 느낌으로 작성해보려 한다
+
+Next.js는 vercel 팀에서 만든  **React Framework**이다.
+
+서버사이드 렌더링을 함으로 얻는 이득 ?
+
+### CSR의 단점
+
+- CSR의 경우 모든 JS 파일을 로드한 이후에 사용자가 웹을 보게 된다 → 즉 JS 파일을 로드하기 전 까지 사용자는 많은 시간을 대기해야 한다
+
+👉 서버사이드 렌더링 즉 서버에서 자바스크립트를 로딩하고 유저가 볼 수 있는 html (미리 데이터가 렌더링된 페이지)을 볼 수 있기 때문에 유저가 페이지를 확인하는 시간을 단축 시킬 수 있다.
+
+<br />
+
+### CSR의 단점
+
+- **SEO** - CSR의 경우 자바스크립트가 로드 되지 않은 경우 웹페이지를 볼 수 없다 -> 비어있는 (index.html)
+- 구글 검색엔진의 경우 자바스크립트가 로드되지 않은 페이지를 검색엔진으로 스캔하여 검색 엔진에 페이지가 걸리지 않는다.
+
+👉 서버사이드 렌더링을 함으로써 검색엔진이 html을 읽을 수 있기 때문에 검색엔진에 페이지가 걸린다. ( meta 태그를 추가하여 seo를 용이하게 할 수 있다. )
+
+다만 SSR은 서버의 부하가 있을 수 있고 페이지 이동 시 깜박이는 단점이 있다.
+
+<br />
+
+### 설치
+
+```shell
+npx create-next-app@latest --ts
+# or
+yarn create next-app --typescript
+# or
+pnpm create next-app --ts
+```
+
+<br />
+
+## Next.js 에서 제공하는 기능
+
+### 페이지 기반 라우팅 시스템
+
+next.js는 pre-rendering 뿐 아니라 페이지 기반 라우팅 시스템도 제공한다. 프로젝트의 /pages 폴더에서 라우팅하려는 컴포넌트를 export하면 폴더명 자체가 페이지 route가 된다.
+
+<br />
+
+```shell
+|_pages
+  |-About
+  |_Notice
+    |_Notice.tsx
+```
+
+→ 루트 페이지인 index.tsx외 notice, about 폴더 등이 Route가 된다 ex) /about , /notice
+
+<br />
+
+### 정적 라우팅
+
+정적 라우팅은 지정된 URL로 이동하는 방법이다
+
+react-router-dom과 같이 Next 에서도 Link를 사용하여 라우트 이동을 할 수 있다.
+
+<br />
+
+```typescript
+import Link from 'next/link';
+
+const Home = () => {
+  return (
+    <div>
+      <Link href="/notice">
+        <a>notice 페이지로 이동</a>
+      </Link>
+    </div>
+  );
+};
+
+export default Home;
+```
+
+<br />
+
+Link는 a 태그와 마찬가지로 **href** 속성으로 이동 할 수 있다.
+
+Link로 감싼 엘리먼트를 클릭하게 되면 지정한 경로로 이동한다
+
+- 또 링크는 브라우저의 History API를 지원하기 때문에 뒤로가기를 클릭하면 이전에 렌더링한 페이지로 이동하게 된다
+
+<br />
+
+### 동적 라우팅
+
+미리 지정해놓은 라우팅 외의 동적으로 라우팅 하는 방법도 존재한다
+
+아래와 같이 \[ \]에 값을 지정하면 해당 값이 **query**가 되고 해당 query로 라우팅이 가능해진다
+
+<br />
+
+```shell
+|_Notice
+  |-[id].tsx
+  |_Notice.tsx
+```
+
+<br />
+
+Notice라는 폴더 하위에 index.tsx와 \[id\].tsx 두개의 파일을 생성했다 index.tsx는 Notice의 Home이 될 것이고 \[id\].tsx는 쿼리로 접근하는 페이지가 될 것 이다.
+
+<br />
+
+```typescript
+// [id].tsx
+
+import { useRouter } from 'next/router';
+
+const Notice = () => {
+  const router = useRouter();
+
+  return (
+    <div>
+      <h1>Notice {router.query.id}</h1>
+    </div>
+  );
+};
+
+export default Notice;
+```
+
+**localhost:3000/Notice/100** 으로 접근했을 경우 Notice 100이 렌더링 된 페이지가 보여진다.
+
+<br />
+
+### **라우터 객체**
+
+이번에는 페이지의 경로 정보를 가지는 라우터 객체 **useRouter**를 알아보자.
+
+<br />
+
+```typescript
+import { useRouter } from 'next/router';
+
+const Home = () => {
+  const router = useRouter();
+
+  const onMoveToAboutPage = () => {
+    router.push('/About');
+  };
+
+  return <div onClick={onMoveToAboutPage}>AboutPage로 이동</div>;
+};
+
+export default Home;
+```
+
+<br />
+
+위 처럼 **이벤트 핸들러를 통해** 라우팅을 하고자 한다면 useRouter 객체를 사용하면 되겠다
+
+<br />
+
+### 자주 사용되는 메소드
+
+```markdown
+router.push - 이동하고자 하는 url이 스택에 쌓여 이동하게 된다
+router.replace - 이동하고자 하는 url이 스택에 쌓이지 않고 이동하게 된다
+router.pathname - 현재 열려있는 페이지의 pathname
+router.query - 현재 열려있는 페이지의 query
+```
+
+<br />
+
+## Next.js의 \_app, \_document
+
+Next.js에는 **\_document**, **\_app** 두개의 기본 페이지가 있다
+
+\_app, \_document는 프로젝트에 공통적으로 적용 되어야할 내용들을 작성해야한다.
+
+<br />
+
+## App
+
+App 컴포넌트는 앱이 시작할 때 가장 먼저 호출되는 컴포넌트이다.
+
+프로젝트의 <span class="highlight">글로벌 작업</span>들을 수행하기에 적합한 컴포넌트이다
+
+<br />
+
+### 예시
+
+- 페이지 변경 시에도 <span class="highlight">레이아웃</span>과 <span class="highlight">상태값</span>을 유지
+- <span class="highlight">componentDidCatch</span>를 통한 에러 핸들링
+- 페이지에 <span class="highlight">추가 데이터</span> 삽입
+- <span class="highlight">Global CSS</span> 추가
+- Header, Footer와 같은 <span class="highlight">공통 레이아웃</span> 추가
+
+<br />
+
+```typescript
+const App = ({ Component, pageProps }) => {
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
+};
+
+export default App;
+```
+
+<br />
+
+기본적인 \_app 컴포넌트의 구조이며 props로 Component와 pageProps를 받는다
+
+<br />
+
+**Component**
+
+Component는 현재 페이지를 의미하며 페이지가 변경되면 Component가 변경된다
+
+<br />
+
+**pageProps**
+
+pageProps는 <span class="highlight">getInitialProps</span>, <span class="highlight">getStaticProps</span>, <span class="highlight">getServerProps</span>중 하나를 통해 가져온 초기 속성값을 의미한다
+
+<br />
+
+```typescript
+// index.tsx
+export async function getStaticProps() {
+  const path = 'Home';
+  return {
+    props: {
+      path,
+    },
+  };
+}
+```
+
+<br />
+
+```typescript
+// _app.tsx
+const App = ({ Component, pageProps }) => {
+  console.log(pageProps); // {path: 'Home'}
+
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
+};
+```
+
+위 처럼 getStaticProps를 사용한다면 \_app.tsx의 pageProps에 해당 값이 담긴다
+
+<br />
+
+## **\_document**
+
+모든 페이지에서 공통적으로 사용되는 html, meta, body 태그 안에 들어갈 내용을 커스텀 할 때 사용한다
+
+- Document는 <span class="highlight">서버에서만 렌더링</span> 된다
+- onClick과 같은 이벤트나 스타일, application 로직 등은 넣으면 안 된다
+- title과 같이 각 페이지별로 변경이 될 가능성이 있는 것들은 각 페이지에 넣어야 한다
+
+<br />
+
+### 📚 \_app, \_document정리
+
+정리하자면 모든 페이지는 \_app, \_document가 실행 된 이후에 실행된다
+
+\_app이 실행된 이후에 \_document가 실행된다
+
+\_app은 어플리케이션 로직, 글로벌 스타일 등 동적으로 변경될 사항들을 다룬다.
+
+\_document는 정적인 사항들에 대해 공통적인 부분을 다룬다
+
+<br />
+
+- **Next.js**는 모든 페이지를 **Pre-rendering**한다
+- 즉, Next.js는 클라이언트측의 자바스크립트가 로드되기 전에 미리 HTML을 생성한다
+
+<br />
+
+**Pre-rendering**은 더 나은 성능과 SEO에 최적화
+되어 있다.
+
+<br />
+
+<p align="center">
+  <img src="/Next-Basic/prerender.jpg" width="65%" />
+</p>
+
+<br />
+
+#### Static Generation , Server-side Rendering
+
+Next.js에는 **Static Generation**, **Server-side Rendering** 두가지 형태의 Pre-rendering 방식을 제공한다
+
+두가지 Rendering 방식의 차이점은 페이지에 대한 HTML을 언제 생성 하느냐에 따른 차이이다.
+
+<br />
+
+**Static Generation** - HTML은 빌드 시 생성되며 사용자 요청에 따라 재사용된다.
+
+**Server-side Rendering** - HTML은 사용자 요청마다 생성된다
+
+<br />
+
+Next.js를 사용하면 각 페이지에서 사용 할 Pre-rendering 방식을 선택할 수 있다.
+
+- 사용자의 요청에 의한 데이터의 이용 없이 페이지를 구성하는 정적 페이지를 생성하는 경우에는 **Static Generation**을 사용하는 것을 권장한다. 예) 회사 소개 페이지, 마케팅 페이지
+
+<br />
+
+- 페이지에서 자주 업데이트 되는 데이터를 보여줘야하고, 사용자 요청마다 페이지의 내용이 변경되어야 하는 경우라면 **Server-side Rendering**를 이용하면 된다
+
+<br />
+
+성능상의 이유로 가능하다면 Static Generation을 사용하는 것이 좋다.
+
+정적으로 생성된 페이지는 CDN에서 캐시할 수 있다.
+
+<br />
+
+<p align="center">
+  <img src="/Next-Basic/generation.jpg" width="65%" />
+</p>
+
+<br />
+
+#### Static Generation without data
+
+일부 페이지는 Pre-rendering을 위해 외부 데이터를 가져와야 한다
+
+데이터를 받아오는 방식에는 두가지 방식이 있으며 하나가 될 수도 있고 경우에 따라 둘 다 적용 될 수 있다.
+
+<br />
+
+<p align="center">
+  <img src="/Next-Basic/withoutdata.jpg" width="75%" />
+</p>
+
+<br />
+
+페이지 콘텐츠가 외부 데이터를 따른다면 **getStaticProps**
+
+페이지 경로가 외부 데이터를 따른다면 **getStaticPaths**
+
+<br />
+
+```typescript
+function Blog({ posts }) {
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
+
+// 이 함수는 빌드 타임 때 호출된다
+export async function getStaticProps() {
+  // 데이터를 받기 위해 외부 API 호출
+  const res = await fetch('https://.../posts');
+  const posts = await res.json();
+
+  // { props: { posts } }를 리턴하고 Blog 컴포넌트가 posts를 props로 받도록 한다
+  return {
+    props: {
+      posts,
+    },
+  };
+}
+```
+
+<br />
+
+#### getStaticPaths
+
+Next.js를 사용하면 동적 경로 가 있는 페이지를 만들 수 있다
+
+\-  pages/posts/\[id\].js
+
+<br />
+
+\[id\].js 파일 빌드 시 pre-rendering 하려는 부분은 외부 데이터에 따라 다를 수 있다.
+
+**getStaticPath**를 사용하여 원하는 경로의 페이지를 빌드 타임 때 pre-rendering 하도록 설정할 수 있다
+
+**동적라우팅 + getStaticProps를 원할 때 사용한다**
+
+<br />
+
+```typescript
+function Post({ post }) {
+  // Render post...
+}
+
+// 이 함수는 빌드 시 호출된다
+export async function getStaticPaths() {
+  const res = await fetch('https://.../posts');
+  const posts = await res.json();
+
+  // pre-render할 Path를 얻는다
+  const paths = posts.map((post) => ({
+    params: { id: post.id },
+  }));
+
+  // paths 배열에 해당하는 경로의 페이지만 빌드 타임에 pre-rendering
+  // { fallback: false } 다른 routes들은 404
+  return { paths, fallback: false };
+}
+
+// 이 함수도 빌드 시 호출된다
+export async function getStaticProps({ params }) {
+  // params contains the post `id`.
+  // params는 post.id를 포함하고 있다
+  // 경로가 /posts/1이면 params.id는 1이다
+  const res = await fetch(`https://.../posts/${params.id}`);
+  const post = await res.json();
+
+  // 외부에서 받은 데이터를 props로 전달
+  return { props: { post } };
+}
+```
+
+<br />
+
+#### Server-side Rendering
+
+**getServerSideProps**는 매 페이지 요청마다 데이터를 서버로부터 가져온다
+
+<br />
+
+```typescript
+function Page({ data }) {
+  // Render data...
+}
+
+// 모든 요청마다 호출된다
+export async function getServerSideProps() {
+  // API 호출
+  const res = await fetch(`https://.../data`);
+  const data = await res.json();
+
+  // 받은 데이터는 props를 통해 전달된다
+  return { props: { data } };
+}
+
+export default Page;
+```
+
+<br />
+
+보시다시피 **getServerSideProps**은  **getStaticProps** 와 유사 하지만  **getServerSideProps** 는 모든 요청에 대해 실행된다는 것이다.
+
+<br />
+
+### Reperence
+
+[https://nextjs.org/docs/basic-features/pages#pre-rendering](https://nextjs.org/docs/basic-features/pages#pre-rendering)
+
+[https://nextjs.org/docs/advanced-features/custom-app](https://nextjs.org/docs/advanced-features/custom-app)
+
+[https://nextjs.org/docs/advanced-features/custom-document](https://nextjs.org/docs/advanced-features/custom-document)
