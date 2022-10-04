@@ -12,7 +12,15 @@ interface ImageTypes {
  * width, padding-top으로 이미지의 비율을 조정한다.
  */
 const Image = ({ src, alt, layout = 'fill' }: ImageTypes) => {
-  return <NextImage src={src} alt={alt} layout={layout} />;
+  return (
+    <NextImage
+      src={src}
+      alt={alt}
+      layout={layout}
+      placeholder="blur"
+      blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMKEqoBwAEHwGzYmXYywAAAABJRU5ErkJggg=="
+    />
+  );
 };
 
 export default Image;
