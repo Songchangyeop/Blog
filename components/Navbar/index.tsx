@@ -14,7 +14,7 @@ const Navbar = () => {
   useEffect(() => {
     const theme = localStorage.getItem('theme');
 
-    if (theme === 'undefined') {
+    if (theme === 'undefined' || !theme) {
       localStorage.setItem('theme', 'light');
       return;
     }
