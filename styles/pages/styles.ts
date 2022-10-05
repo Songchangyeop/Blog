@@ -17,14 +17,13 @@ export const Title = styled.div`
   align-self: flex-start;
   font-size: 2.5rem;
   font-weight: 700;
-  color: ${Color.White};
+  color: var(--bg-sub);
   margin-bottom: 2rem;
   cursor: default;
 `;
 
 export const About = styled.div`
   display: flex;
-  color: ${Color.White};
 
   ${BreakPoint.Tablet} {
     align-items: center;
@@ -53,7 +52,7 @@ export const Intro = styled.div`
   line-height: 1.5rem;
   padding: 1rem 0;
   cursor: default;
-  color: ${Color.LightGray};
+  color: var(--bg-introText);
 
   ${BreakPoint.Tablet} {
     margin-top: 1rem;

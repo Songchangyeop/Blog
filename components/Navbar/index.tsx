@@ -1,10 +1,39 @@
 import Link from 'next/link';
-
-import { Container, Nav } from './styles';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+
+import { Container, Nav, ThemeMode, Sun, Moon } from './styles';
+import { themeState } from 'atoms/themeState';
 
 const Navbar = () => {
+  const [themeMode, setThemeMode] = useRecoilState(themeState);
+
   const router = useRouter();
+
+  useEffect(() => {
+    const theme = localStorage.getItem('theme');
+
+    if (theme === 'undefined') {
+      localStorage.setItem('theme', 'light');
+      return;
+    }
+
+    localStorage.setItem('theme', theme ? theme : 'light');
+
+    setThemeMode(theme);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!themeMode) return;
+
+    document.body.dataset.theme = themeMode;
+    localStorage.setItem('theme', themeMode);
+  }, [themeMode]);
+
+  const onModeToggleClick = () => {
+    setThemeMode((themeMode) => (themeMode === 'dark' ? 'light' : 'dark'));
+  };
 
   return (
     <Container>
@@ -14,6 +43,9 @@ const Navbar = () => {
       <Link href="/blog">
         <Nav active={router.pathname === '/blog'}>Blog</Nav>
       </Link>
+      <ThemeMode onClick={onModeToggleClick}>
+        {themeMode === 'dark' ? <Moon /> : <Sun />}
+      </ThemeMode>
     </Container>
   );
 };

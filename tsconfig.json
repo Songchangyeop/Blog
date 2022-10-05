@@ -36,7 +36,7 @@
     "**/*.tsx",
     "mdx.d.ts",
     ".contentlayer/generated",
-    "next-sitemap.js"
+    "next-sitemap.config.js"
   ],
   "exclude": ["node_modules"]
 }

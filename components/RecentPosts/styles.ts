@@ -13,7 +13,7 @@ export const Container = styled.div`
 export const Header = styled.h1`
   font-size: 2rem;
   cursor: default;
-  color: ${Color.White};
+  color: var(--bg-sub);
 `;
 
 export const Posts = styled.div`
@@ -46,6 +46,7 @@ export const Post = styled.a.attrs({ className: 'clickable' })`
 `;
 
 export const Wrapper = styled.div`
+  background-color: var(--bg-textBox);
   display: flex;
   flex-direction: column;
   padding: 0.6rem 1rem;
@@ -60,7 +61,7 @@ export const Thumbnail = styled.div`
 export const Title = styled.div`
   font-size: 1.2rem;
   font-weight: 700;
-  color: ${Color.White};
+  color: var(--bg-sub)
   margin-bottom: 0.625rem;
   width: 100%;
   overflow: hidden;

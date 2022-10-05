@@ -20,7 +20,7 @@ export const Tag = styled.li.attrs({ className: 'clickable' })<{
   font-weight: 700;
   font-size: 1rem;
   margin-right: 1rem;
-  color: ${({ active }) => (active ? Color.Blue : 'white')};
+  color: ${({ active }) => (active ? Color.Blue : 'var(--bg-sub)')};
 
   ${BreakPoint.MobileL} {
     margin-bottom: 1rem;

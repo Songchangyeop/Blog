@@ -1,6 +1,11 @@
-import { Container, LogoLink, Logo } from './styles';
+import { useRecoilValue } from 'recoil';
+
+import { Container, LogoLink, DarkLogo, LightLogo } from './styles';
+import { themeState } from 'atoms/themeState';
 
 const Footer = () => {
+  const themeMode = useRecoilValue(themeState);
+
   return (
     <Container>
       <LogoLink
@@ -8,7 +13,7 @@ const Footer = () => {
         target="_blank"
         rel="noreferrer"
       >
-        <Logo />
+        {themeMode === 'dark' ? <DarkLogo /> : <LightLogo />}
       </LogoLink>
       © 2022 SongChangYeop All rights reserved
     </Container>

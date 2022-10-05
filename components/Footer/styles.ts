@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { Color } from 'utils/Color';
-import Github from 'public/Icon_github.svg';
+import Github_Dark from 'public/Icon_github_dark.svg';
+import Github_Light from 'public/Icon_github_light.svg';
 
 export const Container = styled.section`
   display: flex;
@@ -11,13 +11,17 @@ export const Container = styled.section`
   width: 100%;
   font-size: 1rem;
   font-weight: 500;
-  color: ${Color.White};
+  color: var(--bg-sub);
 `;
 
 export const LogoLink = styled.a.attrs({ className: 'clickable' })`
   margin-bottom: 1rem;
 `;
 
-export const Logo = styled(Github)`
-  width: 1.875rem;
+export const DarkLogo = styled(Github_Dark)`
+  width: 2.25rem;
+`;
+
+export const LightLogo = styled(Github_Light)`
+  width: 2.25rem;
 `;
