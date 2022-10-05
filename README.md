@@ -18,8 +18,12 @@
 
 `TypeScript`  
 `Next.js`  
-`Styled-Components`  
-**Deploy** `Vercel`
+`Styled-Components`
+`Recoil`
+
+**Deploy**
+
+`Vercel`
 
 <br>
 
@@ -34,5 +38,5 @@ yarn dev
 ### **NextStep**
 
 ```
- Darkmode On/Off, Utterances Gighub Comment ...
+ InfiniteLoading 고민.. 등
 ```
