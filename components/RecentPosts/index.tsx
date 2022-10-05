@@ -14,12 +14,8 @@ import {
   Tags,
   Tag,
 } from './styles';
-import { useEffect } from 'react';
 
 const RecentPosts = ({ posts }: RecentPostsType) => {
-  useEffect(() => {
-    console.log(localStorage.getItem('theme'));
-  });
   return (
     <Container>
       <Header>Recent Posts.</Header>

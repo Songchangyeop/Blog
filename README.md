@@ -38,5 +38,5 @@ yarn dev
 ### **NextStep**
 
 ```
- InfiniteLoading 고민.. 등
+ InfiniteScroll -> Pagination 고민.. 등
 ```
