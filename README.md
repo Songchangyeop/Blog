@@ -18,7 +18,7 @@
 
 `TypeScript`  
 `Next.js`  
-`Styled-Components`
+`Styled-Components`  
 `Recoil`
 
 **Deploy**
