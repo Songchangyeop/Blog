@@ -48,6 +48,10 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap"
             rel="stylesheet"
           />
+          <meta
+            name="google-site-verification"
+            content="0s4dWtZhrCK3s80E6gQs6EqG_D3dqYChkq7WM7ozry8"
+          />
         </Head>
         <body>
           <Main />

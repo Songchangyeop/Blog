@@ -34,17 +34,15 @@ export const ThemeMode = styled.div.attrs({ className: 'clickable' })`
 export const Moon = styled(Icon_Moon)`
   width: 1.875rem;
 
-  animation: loading 500ms;
+  animation: scale 500ms;
 
-  @keyframes loading {
+  @keyframes scale {
     0% {
       transform: scale(0);
     }
-    50% {
-      transform: translateX(0.5);
-    }
+
     100% {
-      transform: translate(1);
+      transform: scale(1);
     }
   }
 `;
@@ -52,17 +50,15 @@ export const Moon = styled(Icon_Moon)`
 export const Sun = styled(Icon_Sun)`
   width: 1.875rem;
 
-  animation: loading 500ms;
+  animation: scale 500ms;
 
-  @keyframes loading {
+  @keyframes scale {
     0% {
       transform: scale(0);
     }
-    50% {
-      transform: translateX(0.5);
-    }
+
     100% {
-      transform: translate(1);
+      transform: scale(1);
     }
   }
 `;
