@@ -9,7 +9,7 @@ export const Nav = styled.a<{ active: boolean }>`
   cursor: pointer;
   font-size: 1.2rem;
   font-weight: 300;
-  color: ${({ active }) => (active ? Color.Blue : 'var(--bg-sub)')};
+  color: ${({ active }) => (active ? Color.Blue : 'var(--bg-text)')};
 
   &:hover {
     color: ${Color.Blue};

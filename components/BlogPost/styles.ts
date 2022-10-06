@@ -37,7 +37,7 @@ export const Tag = styled.li`
 
 export const Title = styled.div`
   font-size: 1.5rem;
-  color: var(--bg-sub);
+  color: var(--bg-text);
   font-weight: 700;
   margin-bottom: 0.625rem;
 

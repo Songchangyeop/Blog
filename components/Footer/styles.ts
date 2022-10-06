@@ -11,7 +11,7 @@ export const Container = styled.section`
   width: 100%;
   font-size: 1rem;
   font-weight: 500;
-  color: var(--bg-sub);
+  color: var(--bg-text);
 `;
 
 export const LogoLink = styled.a.attrs({ className: 'clickable' })`

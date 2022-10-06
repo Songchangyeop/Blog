@@ -17,7 +17,7 @@ export const Title = styled.div`
   align-self: flex-start;
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--bg-sub);
+  color: var(--bg-text);
   margin-bottom: 2rem;
   cursor: default;
 `;

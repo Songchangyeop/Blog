@@ -4,7 +4,7 @@ body {
   margin: 0;
   font-family: 'Noto Sans KR', sans-serif;
   background-color: var(--bg-main);
-  color: var(--bg-sub);
+  color: var(--bg-text);
 }
 
 a {
@@ -49,13 +49,13 @@ strong {
 
 body[data-theme='dark'] {
   --bg-main: #151c21;
-  --bg-sub: #fafafa;
+  --bg-text: #fafafa;
   --bg-introText: #bdbdbd;
 }
 
 body[data-theme='light'] {
   --bg-main: #ffffff;
-  --bg-sub: #151c21;
+  --bg-text: #151c21;
   --bg-textBox: #f5f5f5;
   --bg-introText: #212121;
 }

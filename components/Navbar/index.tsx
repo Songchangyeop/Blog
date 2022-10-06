@@ -19,8 +19,6 @@ const Navbar = () => {
       return;
     }
 
-    localStorage.setItem('theme', theme ? theme : 'light');
-
     setThemeMode(theme);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 

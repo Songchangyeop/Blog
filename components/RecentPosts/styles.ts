@@ -13,7 +13,7 @@ export const Container = styled.div`
 export const Header = styled.h1`
   font-size: 2rem;
   cursor: default;
-  color: var(--bg-sub);
+  color: var(--bg-text);
 `;
 
 export const Posts = styled.div`
@@ -61,7 +61,7 @@ export const Thumbnail = styled.div`
 export const Title = styled.div`
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--bg-sub)
+  color: var(--bg-text)
   margin-bottom: 0.625rem;
   width: 100%;
   overflow: hidden;
