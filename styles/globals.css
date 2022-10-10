@@ -33,18 +33,14 @@ li {
   opacity: 0.7;
 }
 
-.highlight {
-  color: #ec407a;
-  font-size: 0.85rem;
-  font-weight: 700;
-  margin-right: 0.3125rem;
-}
-
 strong {
-  color: #ec407a;
+  color: #d81866;
   font-size: 0.85rem;
   font-weight: 700;
   margin-right: 0.3125rem;
+  padding: 0 2px;
+  border-radius: 3px;
+  background-color: #363636;
 }
 
 body[data-theme='dark'] {
