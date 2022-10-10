@@ -86,4 +86,5 @@ export const Tag = styled.li`
   color: ${Color.Blue};
   font-size: 1rem;
   margin-bottom: 0.3125rem;
+  margin-right: 1rem;
 `;
