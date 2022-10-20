@@ -7,4 +7,5 @@ export const tags = [
   'Redux',
   'FrontEnd',
   'Career',
+  'CS',
 ];
