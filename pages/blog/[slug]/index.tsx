@@ -1,6 +1,5 @@
 import Utterances from 'components/Utterances';
 import { allPosts } from 'contentlayer/generated';
-import type { GetStaticProps } from 'next';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { NextSeo } from 'next-seo';
 
@@ -28,8 +27,10 @@ export const getStaticPaths = () => {
   };
 };
 
-export const getStaticProp: GetStaticProps = ({ params }) => {
+export const getStaticProps = ({ params }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   const post = allPosts.find((p) => p._raw.flattenedPath === params.slug);
+
   return {
     props: {
       post,
