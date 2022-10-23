@@ -52,7 +52,6 @@ body[data-theme='dark'] {
 body[data-theme='light'] {
   --bg-main: #ffffff;
   --bg-text: #151c21;
-  --bg-textBox: #f5f5f5;
   --bg-introText: #212121;
 }
 

@@ -46,7 +46,6 @@ export const Post = styled.a.attrs({ className: 'clickable' })`
 `;
 
 export const Wrapper = styled.div`
-  background-color: var(--bg-textBox);
   display: flex;
   flex-direction: column;
   padding: 0.6rem 1rem;
