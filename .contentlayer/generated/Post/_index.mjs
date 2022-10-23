@@ -31,5 +31,6 @@ import reduxToolkit_sagaMdx from './Redux-Toolkit_Saga.mdx.json'
 import reduxWhatMdx from './Redux-What.mdx.json'
 import tsBasicMdx from './TS-Basic.mdx.json'
 import tsTodoMdx from './TS-Todo.mdx.json'
+import feJwtMdx from './FE-JWT.mdx.json'
 
-export const allPosts = [csAskii_uniCodeMdx, couchPlanningMdx, couchRetrospectMdx, feResponseCodeMdx, jsArray_apisMdx, jsArray_basicMdx, jsAsyncMdx, jsCorsMdx, jsFunctionMdx, jsGeolocationMdx, jsHoistingMdx, jsJsonMdx, jsJsonServerMdx, jsOopMdx, jsObjectMdx, jsPrototypeMdx, jsCriticalRenderingPathMdx, nextBasicMdx, nextImageMdx, reactAntd_paginationMdx, reactAxiosInstanceMdx, reactKakaoMapMdx, reactSkeletonMdx, reactSuspenseMdx, reduxBasicMdx, reduxHooksMdx, reduxToolkitMdx, reduxToolkit_sagaMdx, reduxWhatMdx, tsBasicMdx, tsTodoMdx]
+export const allPosts = [csAskii_uniCodeMdx, couchPlanningMdx, couchRetrospectMdx, feResponseCodeMdx, jsArray_apisMdx, jsArray_basicMdx, jsAsyncMdx, jsCorsMdx, jsFunctionMdx, jsGeolocationMdx, jsHoistingMdx, jsJsonMdx, jsJsonServerMdx, jsOopMdx, jsObjectMdx, jsPrototypeMdx, jsCriticalRenderingPathMdx, nextBasicMdx, nextImageMdx, reactAntd_paginationMdx, reactAxiosInstanceMdx, reactKakaoMapMdx, reactSkeletonMdx, reactSuspenseMdx, reduxBasicMdx, reduxHooksMdx, reduxToolkitMdx, reduxToolkit_sagaMdx, reduxWhatMdx, tsBasicMdx, tsTodoMdx, feJwtMdx]
