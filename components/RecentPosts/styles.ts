@@ -29,14 +29,14 @@ export const Posts = styled.div`
 export const Post = styled.a.attrs({ className: 'clickable' })`
   display: flex;
   flex-direction: column;
-  width: calc(50% - 0.625rem);
+  width: calc(50% - 3.125rem);
   margin-bottom: 2rem;
   border: 1px solid ${Color.Gray};
   border-radius: 1rem;
   overflow: hidden;
 
   &:nth-child(odd) {
-    margin-right: 0.625rem;
+    margin-right: 3.125rem;
   }
 
   ${BreakPoint.MobileL} {
@@ -54,7 +54,7 @@ export const Wrapper = styled.div`
 export const Thumbnail = styled.div`
   position: relative;
   width: 100%;
-  padding-top: 70%;
+  padding-top: 100%;
 `;
 
 export const Title = styled.div`
