@@ -41,7 +41,7 @@ function Blog({ posts }: PropType) {
       <Header>Blog.</Header>
       <NextSeo title="Dev.Song | Blog" />
       <TagList />
-      {currentList.length &&
+      {!!currentList.length &&
         currentList.map((post) => (
           <BlogPost
             date={post.date}
