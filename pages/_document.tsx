@@ -34,6 +34,14 @@ export default class MyDocument extends Document {
   }
 
   render() {
+    const setThemeMode = `
+    function getThemeMode() {
+        const theme = window.localStorage.getItem('theme')
+        return theme ? theme : 'dark'
+    }
+    document.body.dataset.theme = getThemeMode()
+`;
+
     return (
       <Html>
         <Head>
@@ -54,6 +62,7 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
+          <script dangerouslySetInnerHTML={{ __html: setThemeMode }} />
           <Main />
           <NextScript />
         </body>

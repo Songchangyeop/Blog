@@ -6,4 +6,4 @@ Allow: /
 Host: https://blog-songchangyeop.vercel.app/
 
 # Sitemaps
-Sitemap: https://blog-songchangyeop.vercel.app/sitemap-0.xml
+Sitemap: https://blog-songchangyeop.vercel.app/sitemap.xml
