@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: 'https://blog-songchangyeop.vercel.app/',
+  siteUrl: 'https://song-dev.vercel.app/',
   generateRobotsTxt: true,
+  sitemapSize: 7000,
 };
-

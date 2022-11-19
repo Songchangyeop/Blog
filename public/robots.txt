@@ -1,2 +1,9 @@
+# *
 User-agent: *
-Sitemap: https://blog-songchangyeop.vercel.app/sitemap.xml
+Allow: /
+
+# Host
+Host: https://song-dev.vercel.app/
+
+# Sitemaps
+Sitemap: https://song-dev.vercel.app/sitemap.xml
