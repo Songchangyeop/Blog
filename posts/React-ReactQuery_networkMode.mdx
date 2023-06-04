@@ -1,0 +1,109 @@
+---
+title: React-Query의 fetchStatus가 paused 되는 이유
+date: 2023-06-04
+description: React-Query를 사용할 때 네트워크가 불안정하면 데이터 패칭이 안 된다...?
+thumbnail: /React-React-Query_networkMode/thumbnail.jpg
+tags: ['React']
+---
+
+<br />
+
+<p align="center">
+  <img src="/React-React-Query_networkMode/thumbnail.jpg" width="30%" />
+</p>
+
+<br />
+
+React로 개발을 하다 보면 여러 문제점을 마주하게 된다. 그 중 하나는 바로 상태관리 인데, 상태관리를 쉽게 사용 할 수 있게 도와주는 라이브러리는 여러가지 존재한다.
+
+그 중에서도 서버 데이터를 위한 상태관리 라이브러리 중 React-Query를 도입하여 사용하고 있다.
+
+**React-Query** 는 서버의 상태 가져오기, 쿼리키를 통한 캐싱 등 여러가지 기능을 제공한다.
+
+<br />
+
+```javaScript
+import { QueryFunction, useQuery } from '@tanstack/react-query';
+
+export const useGetMyListQuery = () => {
+  return useQuery(['fetchList'], fetcher);
+};
+
+export const fetcher: QueryFunction<ListType[]> = async () => {
+  const { data } = await getList();
+  return data;
+};
+```
+
+<br />
+
+위 처럼 useQuery를 통해 fetchList라는 Query Key를 만들어 해당 쿼리가 한번 요청이 되었다면 캐싱처리를 한다.
+
+<br />
+
+## NetworkMode
+
+**NetworkMode** 에 대해 잠깐 알아보고 본론으로 들어가자
+
+React-Query는 네트워크 연결이 없는 경우 Query 및 Mutation 어떤 식으로 작동해야 하는지 구별하기 위해 세 가지 다른 **NetworkMode** 를 제공한다. 이 NetworkMode는 각 Query, Mutation에 개별적으로 설정하거나 기본값을 통해 전역으로 설정이 가능하다.
+
+이 NetworkMode의 Default는 **'online'** 이다.
+
+<br />
+
+## fetchStatus === 'paused'
+
+리액트 쿼리를 사용하면서 데이터를 요청하고 있었는데 유저에게 가끔 와이파이가 불안정 한 경우 특정 페이지에서 로딩이 무한을 돌고 있다는 문의가 있었다.
+
+유저의 네트워크 상태가 불안정 해서 생긴 문제가 아닌가 했는데, 네이버나 구글 등 다른 웹사이트에서는 문제없이 작동이 된다는 것이었다.
+
+react-query-devtools을 사용하여 상황을 재현했다.
+
+리액트 쿼리를 사용하면서 네트워크 환경이 불안정한 상황에 간헐적으로 react-query를 사용하여 fetching하는 모든 곳에서 <b>fetchStatus</b> 가 **`paused`** 상태가 되는 이슈가 발생하는 것 이었다 🤔
+
+<br />
+
+## 이슈 발생 환경
+
+<b>networkMode: ‘online’</b>
+
+tanstack query에서 제공해주는 OnlineManager의 **`isOnline`** 을 통해 현재 상태가 online 상태인지, offline인지 확인 할 수 있었다.
+
+<br />
+
+<p align="center">
+  <img src="/React-React-Query_networkMode/isOnline.jpg" width="80%" />
+</p>
+
+<br />
+
+networkMode가 online 으로 설정되어 있기 때문에 online 상태 일 때만 fetching을 수행하고 isOnline으로 받은 값이 false 이기 때문에 쿼리가 동작하지 않는다고 판단했다.
+
+또, react-query-devtools 를 사용하여 네트워크 환경이 끊긴 상황에서 재현해보니 **`networkMode: online`** 일 때 해당 문제가 발생하는 것을 알 수 있었다.
+
+<br />
+
+## 해결 (?)
+
+Tanstack query의 github에 DIscussions에서 현재 내가 겪은 것과 같은 상태를 발견했다.
+
+<u>
+  [링크 - Default networkMode configuration and fetchStatus =
+  "paused"](https://github.com/TanStack/query/discussions/4753)
+</u>
+
+해당 DIscussions의 답변 내용은 아래와 같다.
+
+<br />
+
+<p align="center">
+  <img src="/React-React-Query_networkMode/tanstackGithub.jpg" width="80%" />
+</p>
+
+<br />
+
+networkMode를 **`always`** 로 변경하면 이를 쉽게 해결 할 수 있다고 말한다.
+
+하지만 이 문제가 정확히 어떤 문제 때문에 발생한 것인지는 정확히 파악 할 수 없었다.
+
+크롬의 online 관련 문제 일 거라고 예상도 하지만 이는 정확히 파악이 되면 다시 한번 정리하면 좋을 것 같다.
