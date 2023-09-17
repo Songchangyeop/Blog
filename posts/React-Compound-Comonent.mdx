@@ -1,0 +1,139 @@
+---
+title: Compound Component (합성 컴포넌트)로 재사용성 챙기기
+date: 2023-09-17
+description: 디자이너의 요구에 당황하지 않는법
+thumbnail: /React-React-Query_networkMode/thumbnail.jpg
+tags: ['React']
+---
+
+프론트엔드 개발을 하다보면 어떻게 하면 재사용성을 챙기면서 컴포넌트를 개발할지 고민이 들 때가 많다.
+
+오늘 소개 할 것은 **`Compound Component (합성 컴포넌트)`** 패턴에 대해 알아보고 어떤
+상황에 도입하면 좋은지 예제를 통해 알아보자
+
+<br />
+
+<p align="center">
+  <img src="/React-Compound-Component/bottomsheet.png" width="70%" />
+</p>
+
+어느날 디자인 팀에서 버텀시트 개발을 요청했고, 개발자 A는 피그마 UI와 동일한 컴포넌트를 개발했다.
+
+<br />
+
+<p align="center">
+  <img src="/React-Compound-Component/original.png" width="80%" />
+</p>
+
+<br />
+
+개발자 A가 버텀시트 컴포넌트를 만들며 중요시한 점 몇가지를 살펴보면
+
+```
+1. 피그마 UI와 동일 할 것
+2. 타이틀과 버튼의 텍스트가 변경 가능 해야 할 것
+3. 컨텐츠의 내용은 사용하는 곳에서 children으로 받아 유연하게 사용할 것
+```
+
+<br />
+
+개발자 A는 재사용 가능한 컴포넌트를 만들었다고 생각하며 내심 뿌듯해 한다.
+
+그 문제를 직면하기 전까지는..
+
+<br />
+
+### 여러곳에서 자주 사용되는 UI는 꼭 사건이 발생한다.
+
+<div style={{background: '#eee', color: 'black', padding: '10px', borderRadius: '5px'}}>
+<aside>
+🎨 :  버튼 위치 헤더로 변경 가능할까요?
+
+</aside>
+
+<aside>
+👨🏻‍💻 :  네..?
+
+</aside>
+</div>
+
+<br />
+
+### 개발자 A가 당황한 이유를 알아보자 🤔
+
+<br />
+
+### 무섭게 늘어나는 props
+
+- 이미 BottomSheet의 제어를 props로 하는 구조이기 때문에 props가 많지만 더 많은 UI 변경사항에 대응해야 한다면 props는 더 많이 늘어나게 될 것 이다.
+
+### 재사용성의 하락
+
+- 스타일과 각 컴포넌트의 위치가 BottomSheet 내부에 고정으로 설정되어 있기 때문에 변경에 유연하지 않다. 예를 들어 디자이너의 요청과 같이 버튼이 헤더에 타이틀이 버텀으로 이동해야 한다는 요청을 받으면..?
+
+실무에서 일 하다 보면 이러한 문제를 빈번하게 마주치게 되고, 개선하기 위해 여러 고민들을 했었다.
+
+그렇게 도입하게 된 **`Compound Component (합성 컴포넌트)`**
+
+<br />
+
+---
+
+<br />
+
+합성 컴포넌트의 예제이기 때문에 BottomSheet의 세부 구현은 제외되었다 🙂
+
+<br />
+
+### bottom-sheet/BottomSheetBase.tsx
+
+<p align="center">
+  <img src="/React-Compound-Component/base.png" width="100%" />
+</p>
+
+<br />
+
+위와 같이 BottomSheet의 Base를 만들어 준다
+
+BottomSheetBase는 BottomSheet의 최상위 컴포넌트이며 BottomSheet 내부에서 context api를 통해 상태를 공유하고, BottomSheet의 내부 구조는 사용 하는 곳에서 지정하기 때문에 children으로 받아준다.
+
+<br />
+
+### bottom-sheet/index.ts
+
+<p align="center">
+  <img src="/React-Compound-Component/export.png" width="100%" />
+</p>
+
+<br />
+
+위와 같이 BottomSheet로 구성 된 컴포넌트들을 묶어서 export 해준다
+
+<br />
+
+### Usage
+
+이제 완성 된 BottomSheet를 사용해보자
+
+<p align="center">
+  <img src="/React-Compound-Component/usage.png" width="100%" />
+</p>
+
+<br />
+
+BottomSheet의 하위에 사용할 BottomSheet의 서브 컴포넌트 들을 배치하면 된다
+이름 그대로 컴포넌트들을 합성하여 하나의 BottomSheet를 만들어 내는 구조이다
+
+<br />
+
+### 결론
+
+이제 개발자 A는 디자이너의 요청에 당황하지 않고 버튼의 위치를 헤더로 변경 할 수 있게 되었다.
+
+일반적인 상황에서는 합성 컴포넌트를 이용하지 않아도 충분히 개발이 가능하지만 사용하는 곳 마다 조금씩 UI가 다르거나 요구사항이 복잡한 경우 Compound Component을 사용하면 재사용하기에 훌륭한 패턴이 될 것 같다
+
+### reference
+
+[합성 컴포넌트로 재사용성 극대화하기](https://fe-developers.kakaoent.com/2022/220731-composition-component/)
+
+[Compound 패턴](https://patterns-dev-kr.github.io/design-patterns/compound-pattern/)
