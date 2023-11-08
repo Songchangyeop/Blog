@@ -26,55 +26,77 @@ export const Posts = styled.div`
   }
 `;
 
-export const Post = styled.a.attrs({ className: 'clickable' })`
+export const Post = styled.section.attrs({ className: 'clickable' })`
   display: flex;
-  flex-direction: column;
-  width: calc(50% - 3.125rem);
   margin-bottom: 2rem;
-  border: 1px solid ${Color.Gray};
-  border-radius: 1rem;
-  overflow: hidden;
-
-  &:nth-child(odd) {
-    margin-right: 3.125rem;
-  }
-
-  ${BreakPoint.MobileL} {
-    width: 100%;
-    margin-right: 0;
-  }
+  max-height: 10rem;
 `;
 
 export const Wrapper = styled.div`
+  width: 80%;
   display: flex;
   flex-direction: column;
-  padding: 0.6rem 1rem;
+  padding: 0.75rem 0;
+
+  ${BreakPoint.MobileL} {
+    padding: 0;
+    height: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 
 export const Thumbnail = styled.div`
   position: relative;
-  width: 100%;
-  padding-top: 100%;
+  min-width: 10rem;
+  height: 10rem;
+  margin-right: 1.5rem;
+  border-radius: 6px;
+  overflow: hidden;
+
+  ${BreakPoint.MobileL} {
+    margin-right: 0.75rem;
+  }
 `;
 
 export const Title = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  color: var(--bg-text);
   font-weight: 700;
-  color: var(--bg-text)
   margin-bottom: 0.625rem;
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+
+  ${BreakPoint.Tablet} {
+    font-size: 1.25rem;
+  }
+
+  ${BreakPoint.MobileL} {
+    font-size: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 
 export const Description = styled.div`
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: ${Color.LightGray};
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  margin-bottom: 0.5rem;
+
+  ${BreakPoint.Tablet} {
+    font-size: 0.9rem;
+  }
+
+  ${BreakPoint.MobileL} {
+    font-size: 0.7rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 
 export const Tags = styled.ul`

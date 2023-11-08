@@ -18,7 +18,7 @@ export const TextWrap = styled.div`
   ${BreakPoint.MobileL} {
     padding: 0;
     height: 160px;
-    height-space: nowrap;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
