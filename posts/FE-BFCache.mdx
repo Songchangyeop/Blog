@@ -1,0 +1,134 @@
+---
+title: BFCache (Back/forward cache) 뒤로가기 시에 발생한 이슈에 관하여
+date: 2024-01-29
+description: bfCache와 함께한 삽질기
+thumbnail: /FE-BFCache/thumbnail.jpg
+tags: ['FrontEnd']
+---
+
+<br />
+
+## 👋 들어가며..
+
+**BFCache** 로 인한 이슈를 이번에 처음 겪어 보았다. <br />
+제대로 말하면 내가 모르는 새에 여기저기서 이슈가 발생하고 있었지만 이슈가 발생하고 있다는 걸 너무나 늦게 알아차린게 아닌가 싶다 (절레절레 😨) <br />
+아무튼 내가 겪은 이슈와 어떻게 이 녀석게서 벗어났는 지에 대해 공유하고 싶어서 글을 작성해보려 한다
+
+<br />
+
+### BFCache 란?
+
+bfcache란 페이지의 모든 데이터 html문서나 javascript 힙까지 포함하여 <b>완전히 캐시로 저장</b> 해버리는 것이다. <br />
+페이지의 모든 데이터가 메모리에 저장되어 있기 때문에, 사용자가 이전 페이지로 돌아가게 되면 해당 페이지를 구성하기 위한 동작을 할 필요 없이 저장된 캐시 데이터를 바로 볼 수 있는 것이다.
+
+여기까지만 들으면 bfcache는 우리의 웹페이지의 성능을 향상 시켜주는 아주 훌륭한 도구라고 느껴진다. <br />
+
+슬프지만 함정은 존재했다.
+
+## 🤔
+
+<br />
+
+### ⚠️ 이슈 발생
+
+내가 겪은 이슈를 소개하자면.. <br />
+유저가 특정 페이지에서 로그인 페이지로 유도 되고 로그인을 시도한다. 유저의 정보는 글로벌한 상태로 관리되고 있고, 매 API 요청 시 마다 쿠키로 서버에 auth 정보를 전달하고 있다. <br />
+이때 유저가 뒤로가기를 시도하게 된다면 **bfcache** 로 인해 <b>로그인 하기 이전 데이터를 가지고 있는 페이지</b>를 보게 되는 이슈가 발생하고 말았다. <br />
+해당 페이지가 유저의 정보에 따라 다른 데이터를 노출하는 API를 호출해야 하는데, 유저 정보는 글로벌 상태에 존재하지 않고 API 요청 시 쿠키가 전달되어 마치 로그인 한 유저가 필요한 데이터를 넘겨주지 않는 것 같은 에러가 발생하고 말았다.
+
+그래서 나는 특정 페이지에서만 bfcache가 동작하지 않도록 제어 할 수 있는 방법을 모색해야했다..
+
+<br />
+
+### BFCache가 발생하는 환경
+
+[web.dev](https://web.dev/articles/bfcache?hl=ko#browser_compatibility)에 따르면 bfcache는 수년간 데스크톱과 모바일 **Firefox**와 **Safari** 모두에서 지원되었다고 한다 <br />
+또 크롬은 86버전부터 일부 사용자를 대상으로 Android에서 크로스 사이트 탐색에 bfcache 사용을 설정했고, 96 버전부터 bfcache는 데스크톱과 모바일의 모든 chrome 사용자에게 사용 설정 되었다고 한다.
+
+<br />
+
+### 시도한 방법
+
+<b>1. pageshow를 이용한 처리</b>
+
+**pageshow** 이벤트는 페이지가 bfcache에서 복원 된 경우, 즉 bfcache로 인해 메모리에 저장 된 페이지 데이터를 보여 주는 경우에 발생한다.
+이 이벤트는 **persisted**라는 boolean 속성을 가지고 있으며 이 persisted가 true이면 bfcache로 부터 복원 된 것이고 반대로 false라면 일반 페이지 로드를 의미한다고 볼 수 있다.
+
+<p align="center">
+  <img src="/FE-BFCache/pageshow.jpg" width="100%" />
+</p>
+
+pageshow와 유사한 <b>pagehide</b> 라는 이벤트도 존재하는데 이는 pageshow와 반대되는 이벤트다. <br />
+pagehide 이벤트는 브라우저가 페이지를 bfcache에 저장하려고 할 때 발생하는 이벤트다.
+
+**pageshow** 이벤트를 이용하여 처리하는 방법은 가장 흔하게 사용되는 방법이라 적용하려 했으나 유저가 페이지로 돌아왔을 때 bfcache가 적용되어 있다면 필요한 API콜 또는 새로고침을 발생시키기 때문에 UX가 저하 될 수 밖에 없었다. <br />
+해당 페이지에서 cache 자체를 적용하지 않는 방법은 없을까 고민을 하다 몇가지 방법도 알아보게 되었다.
+
+<br />
+
+<b>2. meta태그를 활용한 Cache-Control 제어</b>
+
+페이지의 응답 헤더에 <b>Cache-Control: no-store</b> 를 적용하면 페이지가 bfcache에 저장되지 않도록 할 수 있다. 이는 bfcache 뿐 아니라 다른 캐싱에 영향을 주지만 처리가 필요한 페이지는 유저 별로 정보에 따라 다른 데이터를 보여주어야 하기 때문에 캐싱이 되지 않아도 된다고 판단했다. <br />
+
+<p align="center">
+  <img src="/FE-BFCache/meta.jpg" width="100%" />
+</p>
+
+페이지 head에 meta 태그에서 cache-control을 제어 할 수 있다는 정보를 발견해서 적용했다.
+
+하지만 이는 Next.js에서 적절하지 않은 해결 방법이었다.
+
+<p align="center">
+  <img className="shadow" src="/FE-BFCache/unsupported.jpg" width="80%" />
+</p>
+
+Next.js 공식문서에 따르면 http-equiv 속성이 지원하지 않는 Metadata이기 때문에 적용이 불가능 한 듯 했다.
+[https://nextjs.org/docs/app/api-reference/functions/generate-metadata#unsupported-metadata](https://nextjs.org/docs/app/api-reference/functions/generate-metadata#unsupported-metadata)
+
+<br />
+
+<b>3. next.config.js에서 headers 제어</b>
+
+next.config.js에서 커스텀 헤더를 적용할 수 있다는 것을 발견하고 적용해보기로 했다.
+[https://vercel.com/docs/edge-network/caching](https://vercel.com/docs/edge-network/caching#)
+
+<p align="center">
+  <img src="/FE-BFCache/config.jpg" width="80%" />
+</p>
+
+source는 대상이 되는 페이지의 path를 작성하고 headers애 적용하고 싶은 속성을 넣으면 된다.
+
+<p align="center">
+  <img className="shadow" src="/FE-BFCache/nostore.jpg" width="80%" />
+</p>
+
+적용하게 되면 응답 헤더에 <b>Cache-Control: no-store</b>가 적용되어 있는 것을 볼 수 있다.
+
+몇번의 삽질 끝에 겨우 해결했다고 생각했지만 어떤 이유에서 인지 bfcache가 계속 작동하는 듯 했다. <br />
+왜 no-store가 처리되었지만 여전히 bfcache가 작동하는 걸까?
+
+눈물을 머금고 다시 처음으로 되돌아 갔다.
+
+이유를 언제가 꼭 밝혀내어 2탄으로 돌아오고 싶은 욕망이 그득그득하다
+
+## 🫠
+
+## 결국?
+
+**pageshow** 이벤트를 사용하여 persisted에 따라 그에 맞는 처리를 해주는 것으로 이슈는 제거되었다. <br/>
+UX가 저하 될 우려가 있지만 크게 체감이 되지는 않았다. <br />
+물론 네트워크의 상황에 따라 체감하는 정도는 다르겠지만 현재로서는 최선이라고 판단했다.
+
+여러가지 시도 끝에 이슈는 제거되었지만 찝찝한 마음이 드는 건 어쩔 수 없는걸까
+
+왜 적용 되지 못 한 건지 이유를 알아 내고야 말겠다.
+
+각오를 다지며.. 마무리를 해보자
+
+### Reference
+
+[https://ui.toast.com/weekly-pick/ko_20201201](https://ui.toast.com/weekly-pick/ko_20201201)
+
+[https://yceffort.kr/2020/11/back-forward-cache](https://yceffort.kr/2020/11/back-forward-cache)
+
+[https://web.dev/articles/bfcache?hl=ko](https://web.dev/articles/bfcache?hl=ko)

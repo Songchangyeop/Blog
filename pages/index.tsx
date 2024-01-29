@@ -2,14 +2,7 @@ import { allPosts } from 'contentlayer/generated';
 import { NextSeo } from 'next-seo';
 import Image from 'utils/Image';
 
-import {
-  Container,
-  Title,
-  About,
-  Intro,
-  Profile,
-  ResumeLink,
-} from 'styles/pages/styles';
+import { Container, Title, About, Intro, Profile } from 'styles/pages/styles';
 import RecentPosts from 'components/RecentPosts';
 import { PostTypes } from 'Types/postTypes';
 
@@ -47,12 +40,12 @@ const Home = ({ posts }: PropTypes) => {
           Front-end Engineer / Seoul, Korea
           <br />
           <br />
-          <ResumeLink
+          {/* <ResumeLink
             href="https://holly-monarch-69a.notion.site/e2c53fb57c8c4730a5cd10779137d0c6"
             target="_blank"
           >
             Resume (Notion)
-          </ResumeLink>
+          </ResumeLink> */}
         </Intro>
       </About>
       <RecentPosts posts={posts} />

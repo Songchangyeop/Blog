@@ -15,7 +15,7 @@ const Footer = () => {
       >
         {themeMode === 'dark' ? <DarkLogo /> : <LightLogo />}
       </LogoLink>
-      © 2022 SongChangYeop All rights reserved
+      © 2024 SongChangYeop All rights reserved
     </Container>
   );
 };

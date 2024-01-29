@@ -6,6 +6,7 @@ import { Color } from 'utils/Color';
 export const Container = styled.section`
   margin-top: 2rem;
   color: var(--bg-text);
+  line-height: 30px;
 
   ${BreakPoint.Tablet} {
     padding: 1rem;
@@ -14,6 +15,7 @@ export const Container = styled.section`
 
 export const PostTitle = styled.h1`
   font-size: 2rem;
+  line-height: 40px;
 `;
 
 export const Date = styled.div`

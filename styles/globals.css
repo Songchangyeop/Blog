@@ -5,6 +5,11 @@ body {
   font-family: 'Noto Sans KR', sans-serif;
   background-color: var(--bg-main);
   color: var(--bg-text);
+  /* line-height: ; */
+}
+
+.shadow {
+  box-shadow: -1px 5px 31px -1px rgba(0, 0, 0, 0.28);
 }
 
 a {
@@ -38,7 +43,7 @@ strong {
   font-size: 0.85rem;
   font-weight: 700;
   margin-right: 0.3125rem;
-  padding: 0 2px;
+  padding: 0 5px;
   border-radius: 3px;
   background-color: #87837826;
 }
