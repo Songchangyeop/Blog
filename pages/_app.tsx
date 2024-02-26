@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           title: 'Dev.Song | Blog',
           images: [
             {
-              url: '/Profile.jpg',
+              url: 'https://image.helloipju.co.kr/common_images/referral_share_image.jpg',
               alt: 'og:image',
             },
           ],
