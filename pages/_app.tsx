@@ -8,7 +8,7 @@ import { NextSeo } from 'next-seo';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <RecoilRoot>
+    <>
       <NextSeo
         openGraph={{
           type: 'website',
@@ -23,10 +23,12 @@ function MyApp({ Component, pageProps }: AppProps) {
           ],
         }}
       />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </RecoilRoot>
+      <RecoilRoot>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </RecoilRoot>
+    </>
   );
 }
 
