@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           title: 'Dev.Song | Blog',
           images: [
             {
-              url: '/public/Profile.jpg',
+              url: '/Profile.jpg',
               alt: 'og:image',
             },
           ],
