@@ -6,7 +6,11 @@ import { Color } from 'utils/Color';
 export const Container = styled.section`
   margin-top: 2rem;
   color: var(--bg-text);
-  line-height: 30px;
+  line-height: 35px;
+
+  font-size: 1.125rem;
+
+  font-weight: 300;
 
   ${BreakPoint.Tablet} {
     padding: 1rem;

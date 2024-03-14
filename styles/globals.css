@@ -40,12 +40,14 @@ li {
 
 strong {
   color: #eb5757;
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: 0.875rem;
+  font-weight: 600;
   margin-right: 0.3125rem;
-  padding: 0 5px;
+  padding: 2px 5px;
   border-radius: 3px;
   background-color: #87837826;
+
+  line-height: 22px;
 }
 
 body[data-theme='dark'] {
@@ -67,7 +69,7 @@ pre[class*='language-'] {
   word-spacing: normal;
   word-break: normal;
   word-wrap: normal;
-  color: #eee;
+  color: #d4d4d4;
   background: #2f2f2f;
   font-family: Roboto Mono, monospace;
   font-size: 1em;
