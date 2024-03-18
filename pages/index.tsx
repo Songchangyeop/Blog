@@ -24,7 +24,7 @@ const Home = ({ posts }: PropTypes) => {
         <Profile>
           <Image src={ProfileImage.src} alt="profile" />
         </Profile>
-        <Intro></Intro>
+        <Intro>기능추가</Intro>
       </About>
       <RecentPosts posts={posts} />
     </Container>
