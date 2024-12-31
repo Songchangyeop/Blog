@@ -1,0 +1,185 @@
+---
+title: 리액트 프라그먼트 조금 더 깊이 알아보기
+date: 2024-12-31
+description:
+thumbnail: /React-Skeleton/thumbnail.jpg
+tags: ['React']
+---
+
+<br />
+
+리액트 프라그먼트 (Fragment)는 DOM 구조를 불필요하게 복잡하게 만들지 않고 여러 요소를 반환할 수 있도록 도와주는 유용한 도구다.
+이 글에서 리액트 프라그먼트의 동작원리, 기능, 내부구현 그리고 JSX의 부모 요소 규칙까지 조금 깊이 탐구하려한다.
+
+## 1. 프라그먼트란?
+
+리액트에서 JSX는 컴포넌트가 하나의 부모 요소를 반환해야 한다는 제약이 있다.  
+예를 들어 아래와 같은 코드는 오류를 발생시킨다.
+
+```ts
+function Example() {
+    return (
+        <h1>Hello</h1>
+        <h2>World</h2>
+    )
+}
+```
+
+이 문제를 해결하기 위해 하나의 **<div>** 로 감싸는 방식이 흔히 사용 되지만, 이로 인해 DOM에 불필요한 노드가 추가 될 수 있다
+
+프라그먼트는 이 문제를 해결하기 위해 도입된 것으로, 별도의 DOM 노드를 추가하지 않고 여러 자식요소를 그룹화 할 수 있다!
+
+```ts
+function Example() {
+  return (
+    <>
+      <h1>Hello</h1>
+      <h2>World</h2>
+    </>
+  );
+}
+```
+
+<br />
+
+---
+
+<br />
+
+## 2. 프라그먼트 사용 방법
+
+프라그먼트는 두가지 방식으로 사용이 가능하다
+
+### 2-1 축약 문법
+
+축약은 익숙한 방법이다 빈 태그 **<>...</>** 를 사용하여 작성한다.  
+별도의 속성을 부여 할 필요가 없는 경우 간단하게 사용이 가능하다
+
+```ts
+function List() {
+  return (
+    <>
+      <li>Item 1</li>
+      <li>Item 2</li>
+    </>
+  );
+}
+```
+
+### 2-2 명시적 문법
+
+**React.Fragment** 를 명시적으로 사용 할 수 있다.
+이렇게 명시적으로 사용하는 이유는 key와 같은 속성을 부여해야 할 때 사용한다
+
+```
+function List() {
+    const listItem = [
+        {id: 1, name: 'Banana'},
+        {id: 2, name: 'Apple'}
+    ]
+
+  <ul>
+    return (
+      {
+          listItem.map((item) => (
+            <React.Fragment key={item.id}>
+              <li>Item 1</li>
+              <li>Item 2</li>
+            </React.Fragment>
+          ))
+      }
+    );
+  </ul>
+}
+```
+
+## 3. 리액트는 왜 프라그먼트와 같은 부모 컴포넌트로 감싸야 할까?
+
+리액트에서 같은 레벨의 컴포넌트를 반환할 때 하나의 부모로 감싸야 하는 이유는 JSX가 하나의 반환값만을 허용하기 때문이다.
+이는 리액트가 컴포넌트 렌더링을 트리 구조로 관리하기 위해 설계되었다
+
+조금만 더 자세히 알아보자
+
+### 3-1 트리 구조 관리
+
+리액트는 가상 DOM(Virtual DOM)을 기반으로 동작하며, 컴포넌트 트리를 효율적으로 관리하기 위해 하나의 root 를 가진다
+여러 요소가 독립적인 root로 존재하면 리액트는 트리구조를 일관되게 관리할 수 없게 된다. 따라서 하나의 부모요소로 모든 자식을 감싸는 방식이 필요하다
+
+### 3-2 프라그먼트의 역할
+
+프라그먼트는 부모 요소의 역할을 하면서도 <b>실제 DOM에는 렌더링 되지 않는다.</b>
+이는 불필요한 **<div>** 노드를 방지하고, DOM 구조를 깔끔하게 유지하도록 해준다.
+
+### 3-3 JSX가 변환되는 과정
+
+JSX는 Syntax Sugar이다. 이름 처럼 읽는 사람이나 작성하는 사람이 편하게 디자인 된 문법이라는 것이다.
+이 JSX를 실제 동작하도록 Babel을 통해 변환된다.
+
+변환 과정에서 **React.createElement** 함수가 호출되면서 변환이 되는데, 이 함수는 아래와 같이 동작한다
+
+```ts
+// jsx
+<h1 className="title">Hello, World!</h1>;
+
+// 변환
+React.createElement('h1', { className: 'title' }, 'Hello, World!');
+```
+
+createElement는 다음과 같은 세 가지 인자를 받는다
+
+**type** - 렌더링할 요소의 타입 (예: **div**, **h1**, 컴포넌트, **React.Fragment**)
+**props** - 요소의 속성 (예: **className**, **id**)
+**children** - 자식 요소들
+
+**React.createElement**는 반드시 단일 type을 받게 되어있다.
+부모 요소가 없으면 여러 자식 요소를 그룹화할 수 없으므로 트리를 구성하는 과정에서 에러가 발생한다
+
+아래 코드를 살펴보자
+
+```ts
+return (
+  <h1>Hello</h1>
+  <h2>World</h2>
+)
+```
+
+위는 createElement를 통해 변환이 불가능하다. 리액트는 여러 요소를 단일 type으로 묶어야만 Virtual DOM을 구성할 수 있다.
+
+이 문제를 해결하기 위해 프라그먼트를 사용한다고 보면 되겠다.
+
+```ts
+React.createElement(
+  React.Fragment,
+  null,
+  React.createElement('h1', null, 'Hello'),
+  React.createElement('h2', null, 'World'),
+);
+```
+
+프라그먼트를 사용하여 createElement 함수가 동작하면 위와 같은 결과물이 나오게 된다
+React.Fragment는 부모 요소 역할을 하게되고, 해당 가상 돔 트리의 루트 노드로 동작한다.
+하지만 프라그먼트는 DOM에 렌더링 되지 않으므로 추가적인 노드가 생성이 되지 않는다
+
+```ts
+return (
+  <>
+    <h1>Hello</h1>
+    <h2>World</h2>
+  </>
+);
+```
+
+실제로 프라그먼트를 부모 요소로 둔 위 코드는 Babel에 의해 아래와 같이 변환된다.
+
+```
+React.createElement(React.Fragment, null,
+    React.createElement("h1", null, "Hello"),
+    React.createElement("h2", null, "World")
+);
+```
+
+이처럼 프라그먼트는 React.Fragment로 변환되어 DOM에 별도의 노드를 추가하지 않는다.
+
+---
+
+JSX의 부모 요소 규칙과 프라그먼트의 동작 원리를 소개 했는데 조금이나마 리액트에 대해 생각해보는 계기가 되었으면 좋겠다.
