@@ -184,7 +184,7 @@ pre[class*='language-'] {
 }
 
 .token.function {
-  color: #c792ea;
+  color: #9593fc;
 }
 
 .token.hexcode {
@@ -206,7 +206,7 @@ pre[class*='language-'] {
 }
 
 .token.keyword {
-  color: #c792ea;
+  color: #d27eee;
 }
 
 .token.number {
