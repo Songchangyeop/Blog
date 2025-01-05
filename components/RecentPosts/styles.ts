@@ -37,14 +37,6 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0.75rem 0;
-
-  ${BreakPoint.MobileL} {
-    padding: 0;
-    height: 160px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 `;
 
 export const Thumbnail = styled.div`
