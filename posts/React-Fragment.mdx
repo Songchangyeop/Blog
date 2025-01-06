@@ -73,22 +73,20 @@ function List() {
 
 ```ts
 function List() {
-    const listItem = [
-        {id: 1, name: 'Banana'},
-        {id: 2, name: 'Apple'}
-    ]
+  const listItem = [
+    { id: 1, name: 'Banana' },
+    { id: 2, name: 'Apple' },
+  ];
 
-  <ul>
-    return (
-      {
-          listItem.map((item) => (
-            <React.Fragment key={item.id}>
-              <li>{item.name}</li>
-            </React.Fragment>
-          ))
-      }
-    );
-  </ul>
+  return (
+    <ul>
+      {listItem.map((item) => (
+        <React.Fragment key={item.id}>
+          <li>{item.name}</li>
+        </React.Fragment>
+      ))}
+    </ul>
+  );
 }
 ```
 
