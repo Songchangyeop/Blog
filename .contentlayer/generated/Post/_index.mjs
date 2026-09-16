@@ -3,6 +3,7 @@
 import csAskii_uniCodeMdx from './CS-Askii_UniCode.mdx.json' assert { type: 'json' }
 import couchPlanningMdx from './Couch-Planning.mdx.json' assert { type: 'json' }
 import couchRetrospectMdx from './Couch-Retrospect.mdx.json' assert { type: 'json' }
+import etcSeoStartupMdx from './ETC-SEO-Startup.mdx.json' assert { type: 'json' }
 import feBfCacheMdx from './FE-BFCache.mdx.json' assert { type: 'json' }
 import feJwtMdx from './FE-JWT.mdx.json' assert { type: 'json' }
 import feResponseCodeMdx from './FE-ResponseCode.mdx.json' assert { type: 'json' }
@@ -38,6 +39,5 @@ import reduxToolkit_sagaMdx from './Redux-Toolkit_Saga.mdx.json' assert { type: 
 import reduxWhatMdx from './Redux-What.mdx.json' assert { type: 'json' }
 import tsBasicMdx from './TS-Basic.mdx.json' assert { type: 'json' }
 import tsTodoMdx from './TS-Todo.mdx.json' assert { type: 'json' }
-import etcSeoStartupMdx from './ETC-SEO-Startup.mdx.json' assert { type: 'json' }
 
-export const allPosts = [csAskii_uniCodeMdx, couchPlanningMdx, couchRetrospectMdx, feBfCacheMdx, feJwtMdx, feResponseCodeMdx, jsArray_apisMdx, jsArray_basicMdx, jsAsyncMdx, jsCorsMdx, jsFunctionMdx, jsGeolocationMdx, jsHoistingMdx, jsJsonMdx, jsJsonServerMdx, jsOopMdx, jsObjectMdx, jsPrototypeMdx, jsCriticalRenderingPathMdx, nextBasicMdx, nextImageMdx, reactAntd_paginationMdx, reactAxiosInstanceMdx, reactComponentQualityMdx, reactCompoundComonentMdx, reactFragmentMdx, reactKakaoMapMdx, reactOptimisticUpdateUxMdx, reactReactQuery_networkModeMdx, reactSkeletonMdx, reactSuspenseMdx, reduxBasicMdx, reduxHooksMdx, reduxToolkitMdx, reduxToolkit_sagaMdx, reduxWhatMdx, tsBasicMdx, tsTodoMdx, etcSeoStartupMdx]
+export const allPosts = [csAskii_uniCodeMdx, couchPlanningMdx, couchRetrospectMdx, etcSeoStartupMdx, feBfCacheMdx, feJwtMdx, feResponseCodeMdx, jsArray_apisMdx, jsArray_basicMdx, jsAsyncMdx, jsCorsMdx, jsFunctionMdx, jsGeolocationMdx, jsHoistingMdx, jsJsonMdx, jsJsonServerMdx, jsOopMdx, jsObjectMdx, jsPrototypeMdx, jsCriticalRenderingPathMdx, nextBasicMdx, nextImageMdx, reactAntd_paginationMdx, reactAxiosInstanceMdx, reactComponentQualityMdx, reactCompoundComonentMdx, reactFragmentMdx, reactKakaoMapMdx, reactOptimisticUpdateUxMdx, reactReactQuery_networkModeMdx, reactSkeletonMdx, reactSuspenseMdx, reduxBasicMdx, reduxHooksMdx, reduxToolkitMdx, reduxToolkit_sagaMdx, reduxWhatMdx, tsBasicMdx, tsTodoMdx]
