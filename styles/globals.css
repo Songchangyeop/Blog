@@ -71,7 +71,9 @@ pre[class*='language-'] {
   word-wrap: normal;
   color: #d4d4d4;
   background: #2f2f2f;
-  font-family: Roboto Mono, monospace;
+  font-family:
+    Roboto Mono,
+    monospace;
   font-size: 1em;
   line-height: 1.5em;
 
@@ -184,7 +186,7 @@ pre[class*='language-'] {
 }
 
 .token.function {
-  color: #9593fc;
+  color: #7775ff;
 }
 
 .token.hexcode {

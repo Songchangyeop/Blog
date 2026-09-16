@@ -8,4 +8,5 @@ export const tags = [
   'FrontEnd',
   'Career',
   'CS',
+  'ETC',
 ];
